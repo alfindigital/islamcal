@@ -1,80 +1,117 @@
 
 
-# Kalkulator Islami — Islamic Super Calculator
+# Redesign: Mobile-First Modern Minimalis
 
-**Tagline:** "Alat Hitung Lengkap untuk Muslim Indonesia"
+## Ringkasan Perubahan
 
-A comprehensive, mobile-first Islamic calculator web app for Indonesian Muslims, built entirely client-side with React and Tailwind CSS.
+Redesign total layout agar mobile-first, modern, minimalis, dan mudah diakses dari HP. Menghapus sidebar desktop, mengganti navigasi menjadi single hamburger menu di footer, dan menambahkan floating settings button.
 
 ---
 
-## Navigation & Layout
+## 1. Font - Montserrat/Inter
 
-- **Mobile:** Bottom tab bar with category icons (💰 Keuangan, 🕋 Ibadah, 🗓️ Kalender), expanding to show sub-calculators
-- **Desktop:** Left sidebar with grouped navigation, collapsible categories
-- **Top bar:** App name "Kalkulator Islami" + current calculator title with subtle CSS Islamic geometric pattern
-- **State-based routing** using useState (no react-router)
-- Active calculator highlighted in nav
+**File: `index.html`**
+- Tambahkan Google Fonts link untuk **Montserrat** (headings) dan **Inter** (body text)
 
-## Design System
+**File: `tailwind.config.ts`**
+- Set `fontFamily.sans` ke `['Inter', 'system-ui', 'sans-serif']`
+- Set `fontFamily.heading` ke `['Montserrat', 'Inter', 'sans-serif']`
 
-- **Colors:** Primary emerald-600, secondary teal-700, accent amber-500, background slate-50, cards white with shadow
-- **Cards:** rounded-xl, clean spacing, result cards with emerald-50 background
-- **Islamic pattern:** CSS-only repeating geometric SVG on header strip
-- **Number formatting:** Indonesian thousand separator (titik) for all IDR values
-- **Each calculator:** 1-line description, collapsible "ℹ️ Dasar Perhitungan" fiqh accordion, animated result card, "Share Hasil" clipboard button
-- **Responsive:** 1-column mobile, 2-column form+result on desktop
+**File: `src/index.css`**
+- Tambahkan CSS variable `--font-size-base` yang bisa di-toggle (14px / 16px / 18px) untuk fitur font size setting
+- Apply `font-family` di body
 
-## Calculators
+---
 
-### 💰 Keuangan Islam
+## 2. Layout Baru - Header & Footer Sticky
 
-**1. Kalkulator Zakat Mal** — 4 sub-tabs:
-- **Emas & Perak:** Input weight, toggle gold/silver, configurable price/gram, nisab check (85g gold / 595g silver), 2.5% rate
-- **Uang & Tabungan:** Total savings input, nisab = 85g gold value, 2.5% rate, haul reminder
-- **Perdagangan/Bisnis:** Capital + profit + receivables + stock - debts × 2.5%, nisab check
-- **Pertanian:** Harvest weight, irrigation type toggle (10%/5%/7.5%), nisab 653kg gabah, output in kg + IDR
+**File: `src/pages/Index.tsx`** - Rewrite layout:
 
-**2. Kalkulator Waris (Faraid):**
-- Step 1: Estate value, debts, wasiat (auto-capped at 1/3 with warning)
-- Step 2: Toggle heirs on/off with quantities (spouse, children, parents, siblings, grandparents)
-- Full Syafi'i furudh calculation with ashabah, hajb blocking rules
-- Awl (proportional reduction) and Radd (redistribution) handling
-- Output: Summary table with fractions/percentages/IDR, donut chart visualization, 100% verification
+```text
+┌──────────────────────────┐
+│ HEADER (sticky top)      │
+│ ☪ Kalkulator Islami      │
+├──────────────────────────┤
+│                          │
+│   MAIN CONTENT           │
+│   (scroll area)          │
+│   padding-bottom untuk   │
+│   footer clearance       │
+│                          │
+├──────────────────────────┤
+│ FOOTER (sticky bottom)   │
+│ [☰ Menu]           [⚙]  │
+└──────────────────────────┘
+```
 
-### 🕋 Ibadah & Ritual
+Perubahan utama:
+- **Hapus sidebar desktop** sepenuhnya - semua ukuran layar pakai layout yang sama
+- **Header:** Sticky top, slim (h-12), hanya app name + active calculator title. Tidak ada hamburger di header
+- **Footer:** Sticky bottom, berisi:
+  - **Kiri:** Tombol hamburger menu (☰) yang membuka full-screen overlay/sheet berisi semua 8 kalkulator grouped by category
+  - **Kanan:** Tombol Settings (⚙) yang membuka settings panel
+- **Main content:** Scroll area antara header dan footer, dengan padding-bottom agar tidak tertutup footer
 
-**3. Estimasi Biaya Haji:** Year selection (2026-2035), type (Reguler/Plus/Furoda), family size, 5% inflation compounding, cost breakdown table, CTA to savings simulator
+---
 
-**4. Simulasi Tabungan Haji:** Target amount (auto-fill from Haji calc), current savings, target year, instrument selection (3%/5%/6% return), PMT calculation, with/without return comparison, projected growth chart
+## 3. Mobile Menu (Hamburger di Footer)
 
-**5. Kalkulator Qurban:** Animal type selection, patungan participants (1-7 for sapi/unta), price input with defaults, per-person cost, syarat sah checklist, timing & distribution info
+**Tetap di `src/pages/Index.tsx`:**
 
-**6. Kalkulator Aqiqah:** Child gender (2 or 1 sheep), number of children, price input, total cost with per-child breakdown, sunnah timing & distribution info
+Saat tombol ☰ ditekan:
+- Buka **Sheet/drawer dari bawah** (gunakan komponen Sheet yang sudah ada)
+- Tampilkan semua menu grouped by category:
+  - 💰 Keuangan Islam: Zakat Mal, Kalkulator Waris
+  - 🕋 Ibadah & Ritual: Biaya Haji, Tabungan Haji, Qurban, Aqiqah, Dzikir Counter
+  - 🗓️ Kalender: Kalender Hijriyah
+- Setiap item = icon + label, dalam grid layout
+- Klik item = navigate + auto-close sheet
+- Active item highlighted
 
-**7. Dzikir Counter (Tasbih Digital):**
-- Large circular tap button with progress ring animation
-- Preset chips: Subhanallah×33, Alhamdulillah×33, Allahu Akbar×33, Istighfar×100, Sholawat×100, Custom
-- Auto-suggest next dzikir in sequence on completion
-- Haptic feedback, celebration animation
-- localStorage persistence: last session, lifetime total, daily streak
-- Dark mode toggle for nighttime use
+---
 
-### 🗓️ Kalender
+## 4. Settings Panel (Tombol ⚙ di Footer Kanan)
 
-**8. Konverter Hijriyah ↔ Masehi:**
-- Two-way tabs with Kuwaiti/Tabular algorithm (client-side)
-- Hijri month dropdown (Muharram–Dzulhijjah)
-- Accuracy disclaimer about sidang isbat
-- Bonus: Next 5 upcoming Islamic events with Gregorian dates and countdown
+**File baru: `src/components/shared/SettingsPanel.tsx`**
 
-## Global Features
+Dibuka via Sheet/drawer dari bawah saat tombol ⚙ ditekan. Berisi:
 
-- Fiqh disclaimer footer on every calculator
-- IDR auto-formatting with titik separator
-- "Share Hasil" button copies result summary to clipboard
-- Smooth scroll to results after calculation
-- Friendly empty state when no calculator selected
-- PWA manifest.json meta tags for "Add to Home Screen"
-- Syafi'i madhab as default with notes on other madhab differences where significant
+1. **Dark/Light Mode Toggle**
+   - Toggle switch antara light dan dark
+   - Simpan preferensi di localStorage
+   - Apply class `dark` di `<html>` element
+
+2. **Font Size**
+   - 3 pilihan: Kecil (14px) / Normal (16px) / Besar (18px)
+   - Simpan di localStorage
+   - Apply via CSS variable `--font-size-base` di root
+
+State management: buat hook `useSettings` yang manage dark mode + font size, persist ke localStorage.
+
+---
+
+## 5. CSS & Styling Updates
+
+**File: `src/index.css`**
+- Tambahkan CSS variable `--font-size-base: 16px` di `:root`
+- Body: `font-size: var(--font-size-base)`
+- Hapus sidebar-related CSS variables (tidak dipakai lagi)
+
+**File: `src/App.css`**
+- Bersihkan boilerplate CSS yang tidak terpakai (`#root` max-width, `.logo`, dll)
+
+---
+
+## Technical Details
+
+**Files yang diubah:**
+1. `index.html` - tambah Google Fonts
+2. `tailwind.config.ts` - fontFamily config
+3. `src/index.css` - font-size variable, body font
+4. `src/App.css` - cleanup
+5. `src/pages/Index.tsx` - rewrite layout (hapus sidebar, footer nav + settings button)
+6. `src/components/shared/SettingsPanel.tsx` - **baru**, dark mode + font size panel
+7. `src/hooks/useSettings.ts` - **baru**, localStorage-persisted settings hook
+
+**Existing components yang TIDAK berubah:** Semua 8 calculator components, shared components (IDRInput, ResultCard, dll), UI components.
 
