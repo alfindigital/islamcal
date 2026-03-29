@@ -34,8 +34,10 @@ const NAV_ITEMS: NavItem[] = [
 
 const CATEGORIES = ['💰 Keuangan Islam', '🕋 Ibadah & Ritual', '🗓️ Kalender'];
 
+const TOP_NAV: CalcId[] = ['zakat', 'faraid', 'dzikir'];
+
 const Index: React.FC = () => {
-  const [activeCalc, setActiveCalc] = useState<CalcId>(null);
+  const [activeCalc, setActiveCalc] = useState<CalcId>('zakat');
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
   const settings = useSettings();
