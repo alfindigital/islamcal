@@ -74,11 +74,19 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
-        <div className="flex items-center h-12 px-4 max-w-2xl mx-auto">
-          <span className="text-base font-heading font-bold tracking-tight">☪ Kalkulator Islami</span>
-          {activeItem && (
-            <span className="ml-2 text-sm opacity-80 truncate">— {activeItem.label}</span>
-          )}
+        <div className="flex items-center justify-between h-12 px-4 max-w-2xl mx-auto">
+          <div className="flex items-center">
+            <span className="text-base font-heading font-bold tracking-tight">☪ Kalkulator Islami</span>
+            {activeItem && (
+              <span className="ml-2 text-sm opacity-80 truncate">— {activeItem.label}</span>
+            )}
+          </div>
+          <SettingsPanel
+            darkMode={settings.darkMode}
+            toggleDarkMode={settings.toggleDarkMode}
+            fontSize={settings.fontSize}
+            setFontSize={settings.setFontSize}
+          />
         </div>
       </header>
 
@@ -148,13 +156,6 @@ const Index: React.FC = () => {
             </Sheet>
           </div>
 
-          {/* Settings Button */}
-          <SettingsPanel
-            darkMode={settings.darkMode}
-            toggleDarkMode={settings.toggleDarkMode}
-            fontSize={settings.fontSize}
-            setFontSize={settings.setFontSize}
-          />
         </div>
       </footer>
     </div>
