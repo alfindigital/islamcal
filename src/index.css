@@ -33,6 +33,7 @@
     --ring: 160 84% 29%;
 
     --radius: 0.75rem;
+    --font-size-base: 16px;
 
     --result: 152 60% 95%;
     --result-foreground: 160 84% 20%;
@@ -96,6 +97,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: var(--font-size-base);
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', 'Inter', sans-serif;
   }
 }
 
