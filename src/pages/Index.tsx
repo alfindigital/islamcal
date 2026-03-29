@@ -12,7 +12,7 @@ import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Calculator, BookOpen, Calendar, Heart, Moon, Coins, Users, Landmark, Menu } from 'lucide-react';
 
-type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri' | null;
+type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
 interface NavItem {
   id: CalcId;
