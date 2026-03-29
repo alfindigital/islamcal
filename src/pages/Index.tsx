@@ -64,24 +64,11 @@ const Index: React.FC = () => {
       case 'aqiqah': return <Aqiqah />;
       case 'dzikir': return <DzikirCounter />;
       case 'hijri': return <HijriConverter />;
-      default: return (
-        <div className="flex flex-col items-center justify-center py-16 text-center px-4">
-          <div className="text-5xl mb-4">🕌</div>
-          <h2 className="text-xl font-heading font-bold text-foreground mb-2">Kalkulator Islami</h2>
-          <p className="text-sm text-muted-foreground max-w-sm">Alat Hitung Lengkap untuk Muslim Indonesia. Ketuk menu di bawah untuk memilih kalkulator.</p>
-          <div className="grid grid-cols-2 gap-3 mt-8 w-full max-w-sm">
-            {NAV_ITEMS.map(item => (
-              <button key={item.id} onClick={() => setActiveCalc(item.id)}
-                className="flex items-center gap-3 p-3.5 rounded-xl border bg-card hover:border-primary/40 hover:shadow-md transition-all text-left">
-                <item.icon className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-sm font-medium text-foreground">{item.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      );
     }
   };
+
+  const topItems = NAV_ITEMS.filter(n => TOP_NAV.includes(n.id));
+  const moreItems = NAV_ITEMS.filter(n => !TOP_NAV.includes(n.id));
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -109,51 +96,57 @@ const Index: React.FC = () => {
 
       {/* Sticky Footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
-        <div className="flex items-center justify-between h-14 px-4 max-w-2xl mx-auto">
-          {/* Hamburger Menu */}
-          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-            <SheetTrigger asChild>
-              <button className="flex items-center gap-2 h-10 px-3 rounded-lg bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors" aria-label="Menu">
-                <Menu className="h-5 w-5" />
-                <span className="text-sm font-medium">Menu</span>
+        <div className="flex items-center justify-between h-14 px-2 max-w-2xl mx-auto">
+          {/* Top 3 quick-access buttons */}
+          <div className="flex items-center gap-1">
+            {topItems.map(item => (
+              <button
+                key={item.id}
+                onClick={() => setActiveCalc(item.id)}
+                className={`flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium transition-colors ${
+                  activeCalc === item.id
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                }`}
+              >
+                <item.icon className="h-4 w-4 shrink-0" />
+                <span className="hidden xs:inline">{item.label}</span>
               </button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
-              <SheetHeader>
-                <SheetTitle className="font-heading">Pilih Kalkulator</SheetTitle>
-              </SheetHeader>
-              <nav className="mt-4 space-y-5">
-                {CATEGORIES.map(cat => (
-                  <div key={cat}>
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">{cat}</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {NAV_ITEMS.filter(n => n.category === cat).map(item => (
-                        <button
-                          key={item.id}
-                          onClick={() => handleNavClick(item.id)}
-                          className={`flex items-center gap-3 p-3 rounded-xl text-sm transition-all border ${
-                            activeCalc === item.id
-                              ? 'bg-primary/10 border-primary/30 text-primary font-semibold'
-                              : 'bg-muted/50 border-transparent text-foreground hover:border-primary/20 hover:bg-muted'
-                          }`}
-                        >
-                          <item.icon className="h-4 w-4 shrink-0" />
-                          <span className="truncate">{item.label}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
+            ))}
 
-          {/* Active calc label (center) */}
-          {activeItem && (
-            <span className="text-xs text-muted-foreground truncate mx-2 hidden sm:block">
-              {activeItem.label}
-            </span>
-          )}
+            {/* Selengkapnya menu */}
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
+                <button className="flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
+                  <Menu className="h-4 w-4" />
+                  <span>Lainnya</span>
+                </button>
+              </SheetTrigger>
+              <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
+                <SheetHeader>
+                  <SheetTitle className="font-heading">Kalkulator Lainnya</SheetTitle>
+                </SheetHeader>
+                <nav className="mt-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    {moreItems.map(item => (
+                      <button
+                        key={item.id}
+                        onClick={() => handleNavClick(item.id)}
+                        className={`flex items-center gap-3 p-3 rounded-xl text-sm transition-all border ${
+                          activeCalc === item.id
+                            ? 'bg-primary/10 border-primary/30 text-primary font-semibold'
+                            : 'bg-muted/50 border-transparent text-foreground hover:border-primary/20 hover:bg-muted'
+                        }`}
+                      >
+                        <item.icon className="h-4 w-4 shrink-0" />
+                        <span className="truncate">{item.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
 
           {/* Settings Button */}
           <SettingsPanel
