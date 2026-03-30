@@ -104,58 +104,54 @@ const Index: React.FC = () => {
 
       {/* Sticky Footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
-        <div className="flex items-center justify-between h-14 px-2 max-w-2xl mx-auto">
-          {/* Top 3 quick-access buttons */}
-          <div className="flex items-center gap-1">
-            {topItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => setActiveCalc(item.id)}
-                className={`flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium transition-colors ${
-                  activeCalc === item.id
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                }`}
-              >
-                <item.icon className="h-4 w-4 shrink-0" />
-                <span className="hidden xs:inline">{item.label}</span>
+        <div className="flex items-center justify-center h-14 px-4 max-w-2xl mx-auto gap-2">
+          {topItems.map(item => (
+            <button
+              key={item.id}
+              onClick={() => setActiveCalc(item.id)}
+              className={`flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium transition-colors ${
+                activeCalc === item.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              }`}
+            >
+              <item.icon className="h-5 w-5 shrink-0" />
+              <span className="mt-0.5 truncate text-[10px]">{item.label}</span>
+            </button>
+          ))}
+
+          {/* Selengkapnya menu */}
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger asChild>
+              <button className="flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
+                <Menu className="h-5 w-5" />
+                <span className="mt-0.5 text-[10px]">Lainnya</span>
               </button>
-            ))}
-
-            {/* Selengkapnya menu */}
-            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-              <SheetTrigger asChild>
-                <button className="flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
-                  <Menu className="h-4 w-4" />
-                  <span>Lainnya</span>
-                </button>
-              </SheetTrigger>
-              <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle className="font-heading">Kalkulator Lainnya</SheetTitle>
-                </SheetHeader>
-                <nav className="mt-4">
-                  <div className="grid grid-cols-2 gap-2">
-                    {moreItems.map(item => (
-                      <button
-                        key={item.id}
-                        onClick={() => handleNavClick(item.id)}
-                        className={`flex items-center gap-3 p-3 rounded-xl text-sm transition-all border ${
-                          activeCalc === item.id
-                            ? 'bg-primary/10 border-primary/30 text-primary font-semibold'
-                            : 'bg-muted/50 border-transparent text-foreground hover:border-primary/20 hover:bg-muted'
-                        }`}
-                      >
-                        <item.icon className="h-4 w-4 shrink-0" />
-                        <span className="truncate">{item.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
-
+            </SheetTrigger>
+            <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
+              <SheetHeader>
+                <SheetTitle className="font-heading">Kalkulator Lainnya</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-4">
+                <div className="grid grid-cols-2 gap-2">
+                  {moreItems.map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`flex items-center gap-3 p-3 rounded-xl text-sm transition-all border ${
+                        activeCalc === item.id
+                          ? 'bg-primary/10 border-primary/30 text-primary font-semibold'
+                          : 'bg-muted/50 border-transparent text-foreground hover:border-primary/20 hover:bg-muted'
+                      }`}
+                    >
+                      <item.icon className="h-4 w-4 shrink-0" />
+                      <span className="truncate">{item.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </footer>
     </div>
