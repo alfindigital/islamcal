@@ -23,7 +23,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="flex items-center justify-center h-10 w-10 rounded-full bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors" aria-label="Pengaturan">
+        <button className="flex items-center justify-center h-10 w-10 rounded-full bg-white/15 text-primary-foreground hover:bg-white/25 transition-colors" aria-label="Pengaturan">
           <Settings className="h-5 w-5" />
         </button>
       </SheetTrigger>
