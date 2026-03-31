@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { ZakatMal } from '@/components/calculators/ZakatMal';
 import { Faraid } from '@/components/calculators/Faraid';
 import { BiayaHaji } from '@/components/calculators/BiayaHaji';
@@ -40,22 +40,34 @@ const Index: React.FC = () => {
   const [activeCalc, setActiveCalc] = useState<CalcId>('zakat');
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const [displayCalc, setDisplayCalc] = useState<CalcId>('zakat');
   const settings = useSettings();
+
+  const switchCalc = useCallback((id: CalcId) => {
+    if (id === activeCalc) return;
+    setTransitioning(true);
+    setTimeout(() => {
+      setActiveCalc(id);
+      setDisplayCalc(id);
+      setTransitioning(false);
+    }, 150);
+  }, [activeCalc]);
 
   const navigateToTabungan = useCallback((target: number) => {
     setTabunganTarget(target);
-    setActiveCalc('tabungan');
-  }, []);
+    switchCalc('tabungan');
+  }, [switchCalc]);
 
   const activeItem = NAV_ITEMS.find(n => n.id === activeCalc);
 
   const handleNavClick = (id: CalcId) => {
-    setActiveCalc(id);
+    switchCalc(id);
     setMenuOpen(false);
   };
 
   const renderCalculator = () => {
-    switch (activeCalc) {
+    switch (displayCalc) {
       case 'zakat': return <ZakatMal />;
       case 'faraid': return <Faraid />;
       case 'haji': return <BiayaHaji onNavigateTabungan={navigateToTabungan} />;
@@ -104,7 +116,7 @@ const Index: React.FC = () => {
                     {items.map(item => (
                       <button
                         key={item.id}
-                        onClick={() => setActiveCalc(item.id)}
+                        onClick={() => switchCalc(item.id)}
                         className={`flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm transition-colors mb-0.5 ${
                           activeCalc === item.id
                             ? 'bg-primary text-primary-foreground font-semibold'
@@ -122,7 +134,13 @@ const Index: React.FC = () => {
           </aside>
 
           {/* Calculator content */}
-          <div>
+          <div
+            className="transition-all duration-200 ease-out"
+            style={{
+              opacity: transitioning ? 0 : 1,
+              transform: transitioning ? 'translateY(8px)' : 'translateY(0)',
+            }}
+          >
             {activeItem && (
               <div className="mb-4">
                 <h1 className="text-lg font-heading font-bold text-foreground">{activeItem.label}</h1>
@@ -139,7 +157,7 @@ const Index: React.FC = () => {
           {topItems.map(item => (
             <button
               key={item.id}
-              onClick={() => setActiveCalc(item.id)}
+              onClick={() => switchCalc(item.id)}
               className={`flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium transition-colors ${
                 activeCalc === item.id
                   ? 'bg-primary text-primary-foreground'
