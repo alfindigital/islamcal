@@ -77,7 +77,13 @@ export const ZakatMal: React.FC = () => {
       <p className="text-muted-foreground text-sm mb-3">Hitung zakat harta Anda sesuai ketentuan syariat Islam.</p>
       <FiqhAccordion content={FIQH_TEXT} />
 
-      <Tabs value={subTab} onValueChange={setSubTab}>
+      <Tabs value={subTab} onValueChange={(val) => {
+        setTabTransitioning(true);
+        setTimeout(() => {
+          setSubTab(val);
+          setTabTransitioning(false);
+        }, 150);
+      }}>
         <TabsList className="grid grid-cols-4 w-full mb-4">
           <TabsTrigger value="emas" className="text-xs">Emas & Perak</TabsTrigger>
           <TabsTrigger value="uang" className="text-xs">Uang</TabsTrigger>
