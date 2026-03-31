@@ -134,7 +134,13 @@ const Index: React.FC = () => {
           </aside>
 
           {/* Calculator content */}
-          <div>
+          <div
+            className="transition-all duration-200 ease-out"
+            style={{
+              opacity: transitioning ? 0 : 1,
+              transform: transitioning ? 'translateY(8px)' : 'translateY(0)',
+            }}
+          >
             {activeItem && (
               <div className="mb-4">
                 <h1 className="text-lg font-heading font-bold text-foreground">{activeItem.label}</h1>
