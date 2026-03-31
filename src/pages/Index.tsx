@@ -10,7 +10,7 @@ import { HijriConverter } from '@/components/calculators/HijriConverter';
 import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Calculator, BookOpen, Calendar, Heart, Moon, Coins, Users, Landmark, Menu } from 'lucide-react';
+import { Calculator, BookOpen, Calendar, Heart, Moon, Sun, Coins, Users, Landmark, Menu } from 'lucide-react';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
@@ -86,19 +86,28 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
-        <div className="flex items-center justify-between h-12 px-4 max-w-2xl mx-auto">
+        <div className="flex items-center justify-between h-12 px-4 max-w-3xl mx-auto">
           <div className="flex items-center">
             <span className="text-base font-heading font-bold tracking-tight">☪ Kalkulator Islami</span>
             {activeItem && (
               <span className="ml-2 text-sm opacity-80 truncate">— {activeItem.label}</span>
             )}
           </div>
-          <SettingsPanel
-            darkMode={settings.darkMode}
-            toggleDarkMode={settings.toggleDarkMode}
-            fontSize={settings.fontSize}
-            setFontSize={settings.setFontSize}
-          />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={settings.toggleDarkMode}
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-primary-foreground hover:bg-white/25 transition-all duration-200 hover:scale-110"
+              aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
+            >
+              {settings.darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+            <SettingsPanel
+              darkMode={settings.darkMode}
+              toggleDarkMode={settings.toggleDarkMode}
+              fontSize={settings.fontSize}
+              setFontSize={settings.setFontSize}
+            />
+          </div>
         </div>
       </header>
 
