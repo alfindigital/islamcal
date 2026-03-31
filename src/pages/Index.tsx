@@ -104,35 +104,7 @@ const Index: React.FC = () => {
 
       {/* Scrollable Main Content */}
       <main className="flex-1 pb-20">
-        <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:grid lg:grid-cols-[240px_1fr] lg:gap-8">
-          {/* Desktop sidebar nav - hidden on mobile */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-16 space-y-1">
-              {CATEGORIES.map(cat => {
-                const items = NAV_ITEMS.filter(n => n.category === cat);
-                return (
-                  <div key={cat} className="mb-4">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{cat}</p>
-                    {items.map(item => (
-                      <button
-                        key={item.id}
-                        onClick={() => switchCalc(item.id)}
-                        className={`flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm transition-colors mb-0.5 ${
-                          activeCalc === item.id
-                            ? 'bg-primary text-primary-foreground font-semibold'
-                            : 'text-foreground hover:bg-muted'
-                        }`}
-                      >
-                        <item.icon className="h-4 w-4 shrink-0" />
-                        <span>{item.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                );
-              })}
-            </div>
-          </aside>
-
+        <div className="max-w-2xl mx-auto p-4 sm:p-6">
           {/* Calculator content */}
           <div
             className="transition-all duration-200 ease-out"
