@@ -204,6 +204,7 @@ export const ZakatMal: React.FC = () => {
             )}
           </CardContent></Card>
         </TabsContent>
+      </div>
       </Tabs>
       <DisclaimerFooter />
     </div>
