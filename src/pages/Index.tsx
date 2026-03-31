@@ -56,18 +56,18 @@ const Index: React.FC = () => {
 
   const navigateToTabungan = useCallback((target: number) => {
     setTabunganTarget(target);
-    setActiveCalc('tabungan');
-  }, []);
+    switchCalc('tabungan');
+  }, [switchCalc]);
 
   const activeItem = NAV_ITEMS.find(n => n.id === activeCalc);
 
   const handleNavClick = (id: CalcId) => {
-    setActiveCalc(id);
+    switchCalc(id);
     setMenuOpen(false);
   };
 
   const renderCalculator = () => {
-    switch (activeCalc) {
+    switch (displayCalc) {
       case 'zakat': return <ZakatMal />;
       case 'faraid': return <Faraid />;
       case 'haji': return <BiayaHaji onNavigateTabungan={navigateToTabungan} />;
