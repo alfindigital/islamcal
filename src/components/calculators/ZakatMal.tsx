@@ -14,6 +14,7 @@ const FIQH_TEXT = 'Berdasarkan QS. Al-Baqarah 267 dan At-Taubah 34. Perhitungan 
 
 export const ZakatMal: React.FC = () => {
   const [subTab, setSubTab] = useState('emas');
+  const [tabTransitioning, setTabTransitioning] = useState(false);
 
   // Emas & Perak
   const [berat, setBerat] = useState(0);
