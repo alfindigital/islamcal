@@ -14,6 +14,7 @@ const FIQH_TEXT = 'Berdasarkan QS. Al-Baqarah 267 dan At-Taubah 34. Perhitungan 
 
 export const ZakatMal: React.FC = () => {
   const [subTab, setSubTab] = useState('emas');
+  const [tabTransitioning, setTabTransitioning] = useState(false);
 
   // Emas & Perak
   const [berat, setBerat] = useState(0);
@@ -77,7 +78,13 @@ export const ZakatMal: React.FC = () => {
       <p className="text-muted-foreground text-sm mb-3">Hitung zakat harta Anda sesuai ketentuan syariat Islam.</p>
       <FiqhAccordion content={FIQH_TEXT} />
 
-      <Tabs value={subTab} onValueChange={setSubTab}>
+      <Tabs value={subTab} onValueChange={(val) => {
+        setTabTransitioning(true);
+        setTimeout(() => {
+          setSubTab(val);
+          setTabTransitioning(false);
+        }, 150);
+      }}>
         <TabsList className="grid grid-cols-4 w-full mb-4">
           <TabsTrigger value="emas" className="text-xs">Emas & Perak</TabsTrigger>
           <TabsTrigger value="uang" className="text-xs">Uang</TabsTrigger>
@@ -85,6 +92,7 @@ export const ZakatMal: React.FC = () => {
           <TabsTrigger value="tani" className="text-xs">Pertanian</TabsTrigger>
         </TabsList>
 
+        <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px)' : 'translateY(0)' }}>
         <TabsContent value="emas">
           <Card><CardContent className="pt-5 space-y-4">
             <div className="flex gap-2">
@@ -196,6 +204,7 @@ export const ZakatMal: React.FC = () => {
             )}
           </CardContent></Card>
         </TabsContent>
+      </div>
       </Tabs>
       <DisclaimerFooter />
     </div>
