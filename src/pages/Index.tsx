@@ -40,7 +40,19 @@ const Index: React.FC = () => {
   const [activeCalc, setActiveCalc] = useState<CalcId>('zakat');
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const [displayCalc, setDisplayCalc] = useState<CalcId>('zakat');
   const settings = useSettings();
+
+  const switchCalc = useCallback((id: CalcId) => {
+    if (id === activeCalc) return;
+    setTransitioning(true);
+    setTimeout(() => {
+      setActiveCalc(id);
+      setDisplayCalc(id);
+      setTransitioning(false);
+    }, 150);
+  }, [activeCalc]);
 
   const navigateToTabungan = useCallback((target: number) => {
     setTabunganTarget(target);
