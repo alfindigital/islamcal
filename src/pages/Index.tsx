@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { ZakatMal } from '@/components/calculators/ZakatMal';
 import { Faraid } from '@/components/calculators/Faraid';
 import { BiayaHaji } from '@/components/calculators/BiayaHaji';
