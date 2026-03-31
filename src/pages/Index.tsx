@@ -157,7 +157,7 @@ const Index: React.FC = () => {
           {topItems.map(item => (
             <button
               key={item.id}
-              onClick={() => setActiveCalc(item.id)}
+              onClick={() => switchCalc(item.id)}
               className={`flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium transition-colors ${
                 activeCalc === item.id
                   ? 'bg-primary text-primary-foreground'
