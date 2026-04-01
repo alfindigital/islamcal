@@ -96,10 +96,16 @@ const Index: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={settings.toggleDarkMode}
-              className="flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-primary-foreground hover:bg-white/25 transition-all duration-200 hover:scale-110"
+              className="relative flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-primary-foreground hover:bg-white/25 transition-all duration-200 hover:scale-110"
               aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
-              {settings.darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {settings.darkMode ? <Sun className="h-5 w-5 transition-transform duration-300 rotate-0" /> : <Moon className="h-5 w-5 transition-transform duration-300 rotate-0" />}
+              {settings.darkMode && (
+                <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-400 border border-primary"></span>
+                </span>
+              )}
             </button>
             <SettingsPanel
               darkMode={settings.darkMode}
