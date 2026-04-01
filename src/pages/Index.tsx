@@ -125,7 +125,7 @@ const Index: React.FC = () => {
             className="transition-all duration-200 ease-out"
             style={{
               opacity: transitioning ? 0 : 1,
-              transform: transitioning ? 'translateY(8px)' : 'translateY(0)',
+              transform: transitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)',
             }}
           >
             {activeItem && (
