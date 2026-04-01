@@ -92,7 +92,7 @@ export const ZakatMal: React.FC = () => {
           <TabsTrigger value="tani" className="text-xs">Pertanian</TabsTrigger>
         </TabsList>
 
-        <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px)' : 'translateY(0)' }}>
+        <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)' }}>
         <TabsContent value="emas">
           <Card><CardContent className="pt-5 space-y-4">
             <div className="flex gap-2">
