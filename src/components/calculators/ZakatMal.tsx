@@ -116,7 +116,10 @@ export const ZakatMal: React.FC = () => {
                     <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Zakat (2,5%):</span><span className="font-bold text-primary">{formatIDR(emasResult.zakatNominal)}</span></div>
                   )}
                 </div>
-                <div className="mt-3"><ShareButton getText={() => `Zakat ${jenisLogam}: ${berat}g × ${formatIDR(jenisLogam === 'emas' ? hargaEmas : hargaPerak)} = ${formatIDR(emasResult.totalNilai)}. Zakat: ${formatIDR(emasResult.zakatNominal)}`} /></div>
+                <div className="mt-3 flex gap-2">
+                  <ShareButton getText={() => `Zakat ${jenisLogam}: ${berat}g × ${formatIDR(jenisLogam === 'emas' ? hargaEmas : hargaPerak)} = ${formatIDR(emasResult.totalNilai)}. Zakat: ${formatIDR(emasResult.zakatNominal)}`} />
+                  {emasResult.wajib && <Button variant="outline" size="sm" className="gap-1.5 text-xs" onClick={() => { saveZakatEntry({ type: jenisLogam, label: `Zakat ${jenisLogam}`, amount: emasResult.zakatNominal, details: `${berat}g × ${formatIDR(jenisLogam === 'emas' ? hargaEmas : hargaPerak)}` }); toast.success('Tersimpan di riwayat'); }}><Save className="h-3.5 w-3.5" />Simpan</Button>}
+                </div>
               </ResultCard>
             )}
           </CardContent></Card>
