@@ -130,8 +130,9 @@ const Index: React.FC = () => {
             }}
           >
             {activeItem && (
-              <div className="mb-4">
-                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem.label}</h1>
+              <div className="mb-4 flex items-center justify-between">
+                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
+                {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
             {renderCalculator()}
