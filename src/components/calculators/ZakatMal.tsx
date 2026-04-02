@@ -89,10 +89,10 @@ export const ZakatMal: React.FC = () => {
         }, 150);
       }}>
         <TabsList className="grid grid-cols-4 w-full mb-4">
-          <TabsTrigger value="emas" className="text-xs">Emas & Perak</TabsTrigger>
-          <TabsTrigger value="uang" className="text-xs">Uang</TabsTrigger>
-          <TabsTrigger value="dagang" className="text-xs">Bisnis</TabsTrigger>
-          <TabsTrigger value="tani" className="text-xs">Pertanian</TabsTrigger>
+          <TabsTrigger value="emas" className="text-[10px] sm:text-xs px-1 sm:px-3">Emas & Perak</TabsTrigger>
+          <TabsTrigger value="uang" className="text-[10px] sm:text-xs px-1 sm:px-3">Uang</TabsTrigger>
+          <TabsTrigger value="dagang" className="text-[10px] sm:text-xs px-1 sm:px-3">Bisnis</TabsTrigger>
+          <TabsTrigger value="tani" className="text-[10px] sm:text-xs px-1 sm:px-3">Pertanian</TabsTrigger>
         </TabsList>
 
         <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)' }}>
