@@ -9,6 +9,9 @@ import { DisclaimerFooter } from '@/components/shared/DisclaimerFooter';
 import { ShareButton } from '@/components/shared/ShareButton';
 import { IDRInput } from '@/components/shared/IDRInput';
 import { formatIDR, formatNumber } from '@/utils/formatters';
+import { saveZakatEntry } from '@/utils/zakatHistory';
+import { Save } from 'lucide-react';
+import { toast } from 'sonner';
 
 const FIQH_TEXT = 'Berdasarkan QS. Al-Baqarah 267 dan At-Taubah 34. Perhitungan mengikuti rujukan fiqh Syafi\'iyah. Zakat wajib dikeluarkan jika harta mencapai nisab dan telah dimiliki selama 1 haul (1 tahun Hijriyah).';
 
