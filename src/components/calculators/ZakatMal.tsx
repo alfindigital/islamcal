@@ -208,7 +208,10 @@ export const ZakatMal: React.FC = () => {
                     </>
                   )}
                 </div>
-                <div className="mt-3"><ShareButton getText={() => `Zakat Pertanian: ${hasilPanen}kg, Pengairan: ${jenisPengairan}. Zakat: ${formatNumber(Math.round(taniResult.zakatKg))}kg (${formatIDR(taniResult.zakatIDR)})`} /></div>
+                <div className="mt-3 flex gap-2">
+                  <ShareButton getText={() => `Zakat Pertanian: ${hasilPanen}kg, Pengairan: ${jenisPengairan}. Zakat: ${formatNumber(Math.round(taniResult.zakatKg))}kg (${formatIDR(taniResult.zakatIDR)})`} />
+                  {taniResult.wajib && <Button variant="outline" size="sm" className="gap-1.5 text-xs" onClick={() => { saveZakatEntry({ type: 'tani', label: 'Zakat Pertanian', amount: taniResult.zakatIDR, details: `${hasilPanen}kg, ${jenisPengairan}` }); toast.success('Tersimpan di riwayat'); }}><Save className="h-3.5 w-3.5" />Simpan</Button>}
+                </div>
               </ResultCard>
             )}
           </CardContent></Card>
