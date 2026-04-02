@@ -11,6 +11,7 @@ import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Calculator, BookOpen, Calendar, Heart, Moon, Sun, Coins, Users, Landmark, Menu } from 'lucide-react';
+import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
@@ -129,8 +130,9 @@ const Index: React.FC = () => {
             }}
           >
             {activeItem && (
-              <div className="mb-4">
-                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem.label}</h1>
+              <div className="mb-4 flex items-center justify-between">
+                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
+                {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
             {renderCalculator()}
