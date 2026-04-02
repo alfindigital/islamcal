@@ -88,10 +88,10 @@ const Index: React.FC = () => {
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
         <div className="flex items-center justify-between h-12 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center">
-            <span className="text-base font-heading font-bold tracking-tight">☪ Kalkulator Islami</span>
+          <div className="flex items-center min-w-0">
+            <span className="text-base font-heading font-bold tracking-tight shrink-0">☪ Kalkulator Islami</span>
             {activeItem && (
-              <span className="ml-2 text-sm opacity-80 truncate">— {activeItem.label}</span>
+              <span className="ml-2 text-sm opacity-80 truncate hidden sm:inline">— {activeItem.label}</span>
             )}
           </div>
           <div className="flex items-center gap-2">

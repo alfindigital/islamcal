@@ -68,21 +68,21 @@ export const ZakatHistoryPanel: React.FC = () => {
             entries.map((entry) => (
               <div
                 key={entry.id}
-                className="flex items-start gap-3 p-3 rounded-xl bg-muted/50 border border-border group transition-all hover:border-primary/20"
+                className="flex items-start gap-3 p-3 rounded-xl bg-muted/50 border border-border transition-all"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                       {TYPE_LABELS[entry.type] || entry.type}
                     </span>
                     <span className="text-[10px] text-muted-foreground">{formatDate(entry.date)}</span>
                   </div>
                   <p className="text-sm font-semibold text-foreground">{formatIDR(entry.amount)}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5 truncate">{entry.details}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 break-words">{entry.details}</p>
                 </div>
                 <button
                   onClick={() => handleDelete(entry.id)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-lg hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
+                  className="p-1.5 rounded-lg hover:bg-destructive/10 text-muted-foreground hover:text-destructive shrink-0"
                   aria-label="Hapus"
                 >
                   <X className="h-4 w-4" />
