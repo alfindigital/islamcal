@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { History, Trash2, X } from 'lucide-react';
+import { History, Trash2, X, Download } from 'lucide-react';
 import { getZakatHistory, deleteZakatEntry, clearZakatHistory, ZakatHistoryEntry } from '@/utils/zakatHistory';
 import { formatIDR } from '@/utils/formatters';
+import { toast } from 'sonner';
 
 const TYPE_LABELS: Record<string, string> = {
   emas: '🪙 Emas',
