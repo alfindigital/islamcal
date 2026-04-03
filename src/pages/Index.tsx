@@ -10,8 +10,9 @@ import { HijriConverter } from '@/components/calculators/HijriConverter';
 import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Calculator, BookOpen, Calendar, Heart, Moon, Sun, Coins, Users, Landmark, Menu } from 'lucide-react';
+import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, SunMedium, MoonStar } from 'lucide-react';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
+import logoImg from '@/assets/logo.png';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
