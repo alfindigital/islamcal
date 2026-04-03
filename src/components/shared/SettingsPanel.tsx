@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Switch } from '@/components/ui/switch';
-import { Settings, Sun, Moon } from 'lucide-react';
+import { SlidersHorizontal, Sun, Moon } from 'lucide-react';
 import type { FontSize } from '@/hooks/useSettings';
 
 interface SettingsPanelProps {
