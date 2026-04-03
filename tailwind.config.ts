@@ -14,7 +14,7 @@ export default {
     },
     fontFamily: {
       sans: ['Inter', 'system-ui', 'sans-serif'],
-      heading: ['Montserrat', 'Inter', 'sans-serif'],
+      heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
     },
     extend: {
       colors: {
