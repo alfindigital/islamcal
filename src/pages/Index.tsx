@@ -101,10 +101,13 @@ const Index: React.FC = () => {
           <div className="flex items-center gap-1.5">
             <button
               onClick={settings.toggleDarkMode}
-              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/10 text-primary-foreground hover:bg-white/20 transition-all duration-200 hover:scale-105 border border-white/10"
+              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/10 text-primary-foreground hover:bg-white/20 transition-all duration-200 hover:scale-105 border border-white/10 overflow-hidden"
               aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
-              {settings.darkMode ? <SunMedium className="h-[18px] w-[18px]" /> : <MoonStar className="h-[18px] w-[18px]" />}
+              <span className="relative h-[18px] w-[18px]">
+                <SunMedium className={`absolute inset-0 h-[18px] w-[18px] transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} />
+                <MoonStar className={`absolute inset-0 h-[18px] w-[18px] transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} />
+              </span>
             </button>
             <SettingsPanel
               darkMode={settings.darkMode}
