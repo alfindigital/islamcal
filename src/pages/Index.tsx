@@ -30,7 +30,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'tabungan', label: 'Tabungan Haji', icon: Calculator, category: '🕋 Ibadah & Ritual' },
   { id: 'qurban', label: 'Qurban', icon: Heart, category: '🕋 Ibadah & Ritual' },
   { id: 'aqiqah', label: 'Aqiqah', icon: BookOpen, category: '🕋 Ibadah & Ritual' },
-  { id: 'dzikir', label: 'Dzikir Counter', icon: Moon, category: '🕋 Ibadah & Ritual' },
+  { id: 'dzikir', label: 'Dzikir Counter', icon: MoonStar, category: '🕋 Ibadah & Ritual' },
   { id: 'hijri', label: 'Kalender Hijriyah', icon: Calendar, category: '🗓️ Kalender' },
 ];
 
