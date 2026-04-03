@@ -88,26 +88,23 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
-        <div className="flex items-center justify-between h-12 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center min-w-0">
-            <span className="text-base font-heading font-bold tracking-tight shrink-0">☪ Kalkulator Islami</span>
-            {activeItem && (
-              <span className="ml-2 text-sm opacity-80 truncate hidden sm:inline">— {activeItem.label}</span>
-            )}
+        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} className="shrink-0 drop-shadow-md" />
+            <div className="flex flex-col leading-none">
+              <span className="text-base font-heading font-extrabold tracking-tight">Kalkulator Islami</span>
+              {activeItem && (
+                <span className="text-[11px] opacity-70 truncate hidden sm:block">{activeItem.label}</span>
+              )}
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={settings.toggleDarkMode}
-              className="relative flex items-center justify-center h-9 w-9 rounded-full bg-white/15 text-primary-foreground hover:bg-white/25 transition-all duration-200 hover:scale-110"
+              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/10 text-primary-foreground hover:bg-white/20 transition-all duration-200 hover:scale-105 border border-white/10"
               aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
-              {settings.darkMode ? <Sun className="h-5 w-5 transition-transform duration-300 rotate-0" /> : <Moon className="h-5 w-5 transition-transform duration-300 rotate-0" />}
-              {settings.darkMode && (
-                <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-400 border border-primary"></span>
-                </span>
-              )}
+              {settings.darkMode ? <SunMedium className="h-[18px] w-[18px]" /> : <MoonStar className="h-[18px] w-[18px]" />}
             </button>
             <SettingsPanel
               darkMode={settings.darkMode}
