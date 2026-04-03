@@ -14,8 +14,13 @@ const TYPE_LABELS: Record<string, string> = {
   tani: '🌾 Pertanian',
 };
 
+const TYPE_LABELS_PLAIN: Record<string, string> = {
+  emas: 'Emas', perak: 'Perak', uang: 'Uang', dagang: 'Bisnis', tani: 'Pertanian',
+};
+
 export const ZakatHistoryPanel: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [entries, setEntries] = useState<ZakatHistoryEntry[]>([]);
   const [entries, setEntries] = useState<ZakatHistoryEntry[]>([]);
 
   useEffect(() => {
