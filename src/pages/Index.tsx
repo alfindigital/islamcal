@@ -92,7 +92,7 @@ const Index: React.FC = () => {
           <div className="flex items-center gap-2.5 min-w-0">
             <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} className="shrink-0 drop-shadow-md" />
             <div className="flex flex-col leading-none">
-              <span className="text-base font-heading font-extrabold tracking-tight">Kalkulator Islami</span>
+              <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
               {activeItem && (
                 <span className="text-[11px] opacity-70 truncate hidden sm:block">{activeItem.label}</span>
               )}
