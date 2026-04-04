@@ -101,7 +101,7 @@ const Index: React.FC = () => {
           <div className="flex items-center gap-1.5">
             <button
               onClick={settings.toggleDarkMode}
-              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/10 text-primary-foreground hover:bg-white/20 transition-all duration-200 hover:scale-105 border border-white/10 overflow-hidden"
+              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/20 overflow-hidden shadow-sm"
               aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
               <span className="relative h-[18px] w-[18px]">
