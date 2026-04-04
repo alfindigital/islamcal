@@ -104,9 +104,9 @@ const Index: React.FC = () => {
               className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/20 overflow-hidden shadow-sm"
               aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
-              <span className="relative h-[18px] w-[18px]">
-                <SunMedium className={`absolute inset-0 h-[18px] w-[18px] transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} />
-                <MoonStar className={`absolute inset-0 h-[18px] w-[18px] transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} />
+              <span className="relative h-5 w-5">
+                <SunMedium className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} strokeWidth={2.5} />
+                <MoonStar className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} strokeWidth={2.5} />
               </span>
             </button>
             <SettingsPanel
