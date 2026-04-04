@@ -12,7 +12,7 @@ export function useSettings() {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('ki-dark-mode');
     if (saved !== null) return saved === 'true';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return false;
   });
 
   const [fontSize, setFontSize] = useState<FontSize>(() => {
