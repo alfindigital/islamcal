@@ -23,8 +23,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="flex items-center justify-center h-9 w-9 rounded-xl bg-white/10 text-primary-foreground hover:bg-white/20 transition-all duration-200 hover:scale-105 border border-white/10" aria-label="Pengaturan">
-          <SlidersHorizontal className="h-[18px] w-[18px]" />
+        <button className="flex items-center justify-center h-9 w-9 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/20 shadow-sm" aria-label="Pengaturan">
+          <SlidersHorizontal className="h-5 w-5" strokeWidth={2.5} />
         </button>
       </SheetTrigger>
       <SheetContent side="bottom" className="rounded-t-2xl pb-8">
