@@ -1,6 +1,6 @@
 {
-  "name": "Kalkulator Islami",
-  "short_name": "Kalk. Islami",
+  "name": "IslamCal",
+  "short_name": "IslamCal",
   "description": "Alat Hitung Lengkap untuk Muslim Indonesia",
   "start_url": "/",
   "display": "standalone",
