@@ -91,12 +91,7 @@ const Index: React.FC = () => {
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2.5 min-w-0">
             <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} className="shrink-0 drop-shadow-md" />
-            <div className="flex flex-col leading-none">
-              <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
-              {activeItem && (
-                <span className="text-[11px] opacity-70 truncate hidden sm:block">{activeItem.label}</span>
-              )}
-            </div>
+            <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
           </div>
           <div className="flex items-center gap-1.5">
             <button
