@@ -75,9 +75,9 @@ export const TabunganHaji: React.FC<{ initialTarget?: number }> = ({ initialTarg
 
         <div>
           <label className="block text-sm font-medium mb-1.5">Instrumen</label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-2">
             {([['tabungan', 'Tab. Haji Syariah (3%/th)'], ['deposito', 'Deposito Syariah (5%/th)'], ['reksadana', 'Reksadana Syariah (6%/th)']] as const).map(([val, label]) => (
-              <Button key={val} variant={instrumen === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => setInstrumen(val)}>{label}</Button>
+              <Button key={val} variant={instrumen === val ? 'default' : 'outline'} size="sm" className="text-xs justify-start" onClick={() => setInstrumen(val)}>{label}</Button>
             ))}
           </div>
         </div>

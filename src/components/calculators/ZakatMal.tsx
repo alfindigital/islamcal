@@ -190,9 +190,9 @@ export const ZakatMal: React.FC = () => {
             </div>
             <div>
               <label className="block text-sm font-medium mb-1.5">Jenis Pengairan</label>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex flex-col sm:flex-row gap-2">
                 {([['hujan', 'Tadah Hujan (10%)'], ['irigasi', 'Irigasi (5%)'], ['campuran', 'Campuran (7,5%)']] as const).map(([val, label]) => (
-                  <Button key={val} variant={jenisPengairan === val ? 'default' : 'outline'} size="sm" onClick={() => setJenisPengairan(val)}>{label}</Button>
+                  <Button key={val} variant={jenisPengairan === val ? 'default' : 'outline'} size="sm" className="text-xs flex-1" onClick={() => setJenisPengairan(val)}>{label}</Button>
                 ))}
               </div>
             </div>
