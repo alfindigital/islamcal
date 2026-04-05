@@ -24,14 +24,14 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'zakat', label: 'Zakat Mal', icon: Coins, category: '💰 Keuangan Islam' },
-  { id: 'faraid', label: 'Kalkulator Waris', icon: Users, category: '💰 Keuangan Islam' },
+  { id: 'zakat', label: 'Zakat', icon: Coins, category: '💰 Keuangan Islam' },
+  { id: 'faraid', label: 'Waris', icon: Users, category: '💰 Keuangan Islam' },
   { id: 'haji', label: 'Biaya Haji', icon: Landmark, category: '🕋 Ibadah & Ritual' },
   { id: 'tabungan', label: 'Tabungan Haji', icon: Calculator, category: '🕋 Ibadah & Ritual' },
   { id: 'qurban', label: 'Qurban', icon: Heart, category: '🕋 Ibadah & Ritual' },
   { id: 'aqiqah', label: 'Aqiqah', icon: BookOpen, category: '🕋 Ibadah & Ritual' },
-  { id: 'dzikir', label: 'Dzikir Counter', icon: MoonStar, category: '🕋 Ibadah & Ritual' },
-  { id: 'hijri', label: 'Kalender Hijriyah', icon: Calendar, category: '🗓️ Kalender' },
+  { id: 'dzikir', label: 'Dzikir', icon: MoonStar, category: '🕋 Ibadah & Ritual' },
+  { id: 'hijri', label: 'Kalender', icon: Calendar, category: '🗓️ Kalender' },
 ];
 
 const CATEGORIES = ['💰 Keuangan Islam', '🕋 Ibadah & Ritual', '🗓️ Kalender'];
