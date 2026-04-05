@@ -50,9 +50,9 @@ export const BiayaHaji: React.FC<{ onNavigateTabungan?: (target: number) => void
 
         <div>
           <label className="block text-sm font-medium mb-1.5">Tipe Haji</label>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {([['reguler', 'Reguler'], ['plus', 'Plus (ONH+)'], ['furoda', 'Furoda']] as const).map(([val, label]) => (
-              <Button key={val} variant={tipe === val ? 'default' : 'outline'} size="sm" onClick={() => setTipe(val)}>{label}</Button>
+              <Button key={val} variant={tipe === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => setTipe(val)}>{label}</Button>
             ))}
           </div>
         </div>

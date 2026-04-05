@@ -353,21 +353,23 @@ export const Faraid: React.FC = () => {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full text-xs sm:text-sm">
                   <thead>
                     <tr className="border-b"><th className="text-left py-1.5">Ahli Waris</th><th className="text-center">Bagian</th><th className="text-right">%</th><th className="text-right">Jumlah</th></tr>
                   </thead>
                   <tbody>
                     {result.shares.map((s, i) => (
                       <tr key={i} className={`border-b last:border-0 ${s.blocked ? 'text-muted-foreground line-through' : ''}`}>
-                        <td className="py-1.5 flex items-center gap-2">
-                          {!s.blocked && <span className="w-3 h-3 rounded-full inline-block" style={{ backgroundColor: colors[i % colors.length] }} />}
-                          {s.name}
-                          {s.blocked && <span className="text-xs text-destructive">(Terhalang oleh {s.blockedBy})</span>}
+                        <td className="py-1.5">
+                          <div className="flex items-center gap-1.5">
+                            {!s.blocked && <span className="w-2.5 h-2.5 rounded-full shrink-0 inline-block" style={{ backgroundColor: colors[i % colors.length] }} />}
+                            <span className="truncate">{s.name}</span>
+                          </div>
+                          {s.blocked && <span className="text-[10px] text-destructive block">(Terhalang: {s.blockedBy})</span>}
                         </td>
                         <td className="text-center font-medium">{s.fraction}</td>
                         <td className="text-right">{s.blocked ? '-' : `${s.percentage.toFixed(1)}%`}</td>
-                        <td className="text-right font-semibold">{s.blocked ? '-' : formatIDR(s.amount)}</td>
+                        <td className="text-right font-semibold whitespace-nowrap">{s.blocked ? '-' : formatIDR(s.amount)}</td>
                       </tr>
                     ))}
                   </tbody>
