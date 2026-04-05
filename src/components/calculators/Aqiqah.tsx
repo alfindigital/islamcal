@@ -31,9 +31,9 @@ export const Aqiqah: React.FC = () => {
       <Card><CardContent className="pt-5 space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1.5">Jenis Kelamin Anak</label>
-          <div className="flex gap-2">
-            <Button variant={jenisKelamin === 'L' ? 'default' : 'outline'} size="sm" onClick={() => setJenisKelamin('L')}>👦 Laki-laki (2 kambing)</Button>
-            <Button variant={jenisKelamin === 'P' ? 'default' : 'outline'} size="sm" onClick={() => setJenisKelamin('P')}>👧 Perempuan (1 kambing)</Button>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <Button variant={jenisKelamin === 'L' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('L')}>👦 Laki-laki (2 kambing)</Button>
+            <Button variant={jenisKelamin === 'P' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('P')}>👧 Perempuan (1 kambing)</Button>
           </div>
         </div>
 
