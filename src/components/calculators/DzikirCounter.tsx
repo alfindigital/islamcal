@@ -143,12 +143,7 @@ export const DzikirCounter: React.FC = () => {
 
   return (
     <div ref={containerRef} className="min-h-[70vh]">
-      <div className="flex items-center justify-between mb-3">
-        <p className="text-muted-foreground text-sm">Tasbih digital untuk dzikir harian Anda.</p>
-        <Button variant="ghost" size="icon" onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        </Button>
-      </div>
+      <p className="text-muted-foreground text-sm mb-3">Tasbih digital untuk dzikir harian Anda.</p>
 
       {/* Stats */}
       <div className="flex gap-3 mb-4">
