@@ -10,10 +10,10 @@ import { formatIDR } from '@/utils/formatters';
 
 const FIQH_TEXT = 'Berdasarkan QS. Al-Hajj 34, Al-Kautsar 2, dan Hadits Muslim dari Jabir bin Abdillah. Qurban disyariatkan bagi muslim yang mampu pada hari raya Idul Adha.';
 
-type AnimalType = 'kambing' | 'sapi' | 'unta';
+type AnimalType = 'kambing' | 'sapi';
 
-const defaults: Record<AnimalType, number> = { kambing: 3500000, sapi: 25000000, unta: 40000000 };
-const maxPeserta: Record<AnimalType, number> = { kambing: 1, sapi: 7, unta: 7 };
+const defaults: Record<AnimalType, number> = { kambing: 3500000, sapi: 25000000 };
+const maxPeserta: Record<AnimalType, number> = { kambing: 1, sapi: 7 };
 
 export const Qurban: React.FC = () => {
   const [jenis, setJenis] = useState<AnimalType>('kambing');
