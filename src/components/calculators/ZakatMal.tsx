@@ -23,7 +23,7 @@ export const ZakatMal: React.FC = () => {
   const [berat, setBerat] = useState(0);
   const [jenisLogam, setJenisLogam] = useState<'emas' | 'perak'>('emas');
   const [hargaEmas, setHargaEmas] = useState(1500000);
-  const [hargaPerak, setHargaPerak] = useState(15000);
+  const [hargaPerak, setHargaPerak] = useState(39000);
 
   // Uang
   const [totalSaldo, setTotalSaldo] = useState(0);
