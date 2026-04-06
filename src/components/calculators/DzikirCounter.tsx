@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DisclaimerFooter } from '@/components/shared/DisclaimerFooter';
 import { formatNumber } from '@/utils/formatters';
-import { RotateCcw, Moon, Sun } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 
 interface Preset {
   id: string;
