@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DisclaimerFooter } from '@/components/shared/DisclaimerFooter';
 import { formatNumber } from '@/utils/formatters';
-import { RotateCcw, Moon, Sun } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 
 interface Preset {
   id: string;
@@ -54,19 +54,9 @@ export const DzikirCounter: React.FC = () => {
   const [isCustom, setIsCustom] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [showConfirmReset, setShowConfirmReset] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const today = new Date().toISOString().split('T')[0];
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    return () => document.documentElement.classList.remove('dark');
-  }, [darkMode]);
 
   useEffect(() => { saveData(data); }, [data]);
 
@@ -153,12 +143,7 @@ export const DzikirCounter: React.FC = () => {
 
   return (
     <div ref={containerRef} className="min-h-[70vh]">
-      <div className="flex items-center justify-between mb-3">
-        <p className="text-muted-foreground text-sm">Tasbih digital untuk dzikir harian Anda.</p>
-        <Button variant="ghost" size="icon" onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-        </Button>
-      </div>
+      <p className="text-muted-foreground text-sm mb-3">Tasbih digital untuk dzikir harian Anda.</p>
 
       {/* Stats */}
       <div className="flex gap-3 mb-4">
