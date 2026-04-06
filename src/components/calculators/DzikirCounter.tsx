@@ -54,19 +54,7 @@ export const DzikirCounter: React.FC = () => {
   const [isCustom, setIsCustom] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [showConfirmReset, setShowConfirmReset] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const today = new Date().toISOString().split('T')[0];
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    return () => document.documentElement.classList.remove('dark');
-  }, [darkMode]);
 
   useEffect(() => { saveData(data); }, [data]);
 
