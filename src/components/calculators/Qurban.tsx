@@ -10,10 +10,10 @@ import { formatIDR } from '@/utils/formatters';
 
 const FIQH_TEXT = 'Berdasarkan QS. Al-Hajj 34, Al-Kautsar 2, dan Hadits Muslim dari Jabir bin Abdillah. Qurban disyariatkan bagi muslim yang mampu pada hari raya Idul Adha.';
 
-type AnimalType = 'kambing' | 'sapi' | 'unta';
+type AnimalType = 'kambing' | 'sapi';
 
-const defaults: Record<AnimalType, number> = { kambing: 3500000, sapi: 25000000, unta: 40000000 };
-const maxPeserta: Record<AnimalType, number> = { kambing: 1, sapi: 7, unta: 7 };
+const defaults: Record<AnimalType, number> = { kambing: 3500000, sapi: 25000000 };
+const maxPeserta: Record<AnimalType, number> = { kambing: 1, sapi: 7 };
 
 export const Qurban: React.FC = () => {
   const [jenis, setJenis] = useState<AnimalType>('kambing');
@@ -37,8 +37,8 @@ export const Qurban: React.FC = () => {
         <div>
           <label className="block text-sm font-medium mb-1.5">Jenis Hewan</label>
           <div className="flex flex-wrap gap-2">
-            {([['kambing', '🐐 Kambing/Domba'], ['sapi', '🐄 Sapi'], ['unta', '🐪 Unta']] as const).map(([val, label]) => (
-              <Button key={val} variant={jenis === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => handleJenisChange(val)}>{label}</Button>
+            {([['kambing', '🐐 Kambing/Domba'], ['sapi', '🐄 Sapi']] as const).map(([val, label]) => (
+              <Button key={val} variant={jenis === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => handleJenisChange(val as AnimalType)}>{label}</Button>
             ))}
           </div>
         </div>
@@ -70,7 +70,7 @@ export const Qurban: React.FC = () => {
           <ul className="text-sm text-muted-foreground space-y-1.5">
             <li>✅ Kambing/domba minimal 1 tahun (atau sudah tanggal gigi)</li>
             <li>✅ Sapi/kerbau minimal 2 tahun</li>
-            <li>✅ Unta minimal 5 tahun</li>
+            
             <li>✅ Sehat, tidak cacat (buta, pincang parah, kurus, telinga/tanduk patah mayoritas)</li>
             <li>✅ Bukan hewan yang sedang hamil</li>
           </ul>
