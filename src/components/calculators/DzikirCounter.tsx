@@ -56,6 +56,8 @@ export const DzikirCounter: React.FC = () => {
   const [showConfirmReset, setShowConfirmReset] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const today = new Date().toISOString().split('T')[0];
+
   useEffect(() => { saveData(data); }, [data]);
 
   // Check streak
