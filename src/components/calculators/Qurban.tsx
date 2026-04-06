@@ -37,8 +37,8 @@ export const Qurban: React.FC = () => {
         <div>
           <label className="block text-sm font-medium mb-1.5">Jenis Hewan</label>
           <div className="flex flex-wrap gap-2">
-            {([['kambing', '🐐 Kambing/Domba'], ['sapi', '🐄 Sapi'], ['unta', '🐪 Unta']] as const).map(([val, label]) => (
-              <Button key={val} variant={jenis === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => handleJenisChange(val)}>{label}</Button>
+            {([['kambing', '🐐 Kambing/Domba'], ['sapi', '🐄 Sapi']] as const).map(([val, label]) => (
+              <Button key={val} variant={jenis === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => handleJenisChange(val as AnimalType)}>{label}</Button>
             ))}
           </div>
         </div>
