@@ -70,7 +70,7 @@ export const Qurban: React.FC = () => {
           <ul className="text-sm text-muted-foreground space-y-1.5">
             <li>✅ Kambing/domba minimal 1 tahun (atau sudah tanggal gigi)</li>
             <li>✅ Sapi/kerbau minimal 2 tahun</li>
-            <li>✅ Unta minimal 5 tahun</li>
+            
             <li>✅ Sehat, tidak cacat (buta, pincang parah, kurus, telinga/tanduk patah mayoritas)</li>
             <li>✅ Bukan hewan yang sedang hamil</li>
           </ul>
