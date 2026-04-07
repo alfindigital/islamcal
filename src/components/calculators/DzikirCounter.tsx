@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { DisclaimerFooter } from '@/components/shared/DisclaimerFooter';
 import { formatNumber } from '@/utils/formatters';
 import { RotateCcw } from 'lucide-react';
+import { DzikirReminder } from '@/components/shared/DzikirReminder';
 
 interface Preset {
   id: string;
@@ -144,6 +145,9 @@ export const DzikirCounter: React.FC = () => {
   return (
     <div ref={containerRef} className="min-h-[70vh]">
       <p className="text-muted-foreground text-sm mb-3">Tasbih digital untuk dzikir harian Anda.</p>
+
+      {/* Reminder */}
+      <DzikirReminder />
 
       {/* Stats */}
       <div className="flex gap-3 mb-4">
