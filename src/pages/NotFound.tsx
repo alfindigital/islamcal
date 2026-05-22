@@ -6,6 +6,20 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    const prevTitle = document.title;
+    document.title = "Halaman Tidak Ditemukan | IslamCal";
+
+    const descTag = document.querySelector('meta[name="description"]');
+    const prevDesc = descTag?.getAttribute("content") ?? "";
+    descTag?.setAttribute(
+      "content",
+      "Halaman yang Anda cari tidak ditemukan di IslamCal. Kembali ke beranda untuk mengakses kalkulator Islami."
+    );
+
+    return () => {
+      document.title = prevTitle;
+      if (descTag && prevDesc) descTag.setAttribute("content", prevDesc);
+    };
   }, [location.pathname]);
 
   return (
