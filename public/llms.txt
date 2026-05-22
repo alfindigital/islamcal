@@ -1,0 +1,7 @@
+# IslamCal
+
+> Alat hitung lengkap untuk Muslim Indonesia: Zakat Mal, Waris (Faraid), Biaya Haji, Tabungan Haji, Qurban, Aqiqah, Dzikir Counter, dan Konverter Hijriyah. Gratis, offline, tanpa registrasi.
+
+## Pages
+
+- [Beranda](/): Semua kalkulator Islami dalam satu aplikasi.
