@@ -90,7 +90,7 @@ const Index: React.FC = () => {
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2.5 min-w-0">
-            <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} className="shrink-0 drop-shadow-md" />
+            <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
             <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
           </div>
           <div className="flex items-center gap-1.5">
