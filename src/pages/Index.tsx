@@ -14,7 +14,7 @@ import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, SunMedium, MoonStar } from 'lucide-react';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
-import logoImg from '@/assets/logo.png';
+const logoImg = '/logo.png';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
