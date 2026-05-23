@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ZakatMal } from '@/components/calculators/ZakatMal';
 import { Faraid } from '@/components/calculators/Faraid';
 import { BiayaHaji } from '@/components/calculators/BiayaHaji';
@@ -21,40 +23,78 @@ interface NavItem {
   label: string;
   icon: React.ElementType;
   category: string;
+  path: string;
+  title: string;
+  description: string;
 }
 
-const NAV_ITEMS: NavItem[] = [
-  { id: 'zakat', label: 'Zakat', icon: Coins, category: '💰 Keuangan Islam' },
-  { id: 'faraid', label: 'Waris', icon: Users, category: '💰 Keuangan Islam' },
-  { id: 'haji', label: 'Biaya Haji', icon: Landmark, category: '🕋 Ibadah & Ritual' },
-  { id: 'tabungan', label: 'Tabungan Haji', icon: Calculator, category: '🕋 Ibadah & Ritual' },
-  { id: 'qurban', label: 'Qurban', icon: Heart, category: '🕋 Ibadah & Ritual' },
-  { id: 'aqiqah', label: 'Aqiqah', icon: BookOpen, category: '🕋 Ibadah & Ritual' },
-  { id: 'dzikir', label: 'Dzikir', icon: MoonStar, category: '🕋 Ibadah & Ritual' },
-  { id: 'hijri', label: 'Kalender', icon: Calendar, category: '🗓️ Kalender' },
-];
+const SITE = 'https://islamcal.lovable.app';
 
-const CATEGORIES = ['💰 Keuangan Islam', '🕋 Ibadah & Ritual', '🗓️ Kalender'];
+const NAV_ITEMS: NavItem[] = [
+  { id: 'zakat', label: 'Zakat', icon: Coins, category: '💰 Keuangan Islam', path: '/zakat',
+    title: 'Kalkulator Zakat Mal — Hitung Zakat 2,5% Sesuai Nisab | IslamCal',
+    description: 'Hitung zakat mal otomatis berdasarkan nisab emas/perak terkini. Sertakan tabungan, emas, saham, dan piutang. Gratis, akurat, mazhab Syafi\'i.' },
+  { id: 'faraid', label: 'Waris', icon: Users, category: '💰 Keuangan Islam', path: '/waris',
+    title: 'Kalkulator Waris (Faraid) — Pembagian Warisan Islam | IslamCal',
+    description: 'Hitung pembagian harta waris menurut hukum faraid Islam. Mendukung ahli waris istri, suami, anak, orang tua, saudara sesuai mazhab Syafi\'i.' },
+  { id: 'haji', label: 'Biaya Haji', icon: Landmark, category: '🕋 Ibadah & Ritual', path: '/biaya-haji',
+    title: 'Kalkulator Biaya Haji — Estimasi BPIH dengan Inflasi | IslamCal',
+    description: 'Estimasi biaya haji masa depan dengan perhitungan inflasi tahunan. Pilih reguler atau plus, tentukan tahun berangkat, dan rencanakan dana.' },
+  { id: 'tabungan', label: 'Tabungan Haji', icon: Calculator, category: '🕋 Ibadah & Ritual', path: '/tabungan-haji',
+    title: 'Kalkulator Tabungan Haji — Simulasi Setoran Bulanan | IslamCal',
+    description: 'Hitung setoran bulanan tabungan haji dengan rumus PMT. Tentukan target, jangka waktu, dan imbal hasil untuk capai biaya haji.' },
+  { id: 'qurban', label: 'Qurban', icon: Heart, category: '🕋 Ibadah & Ritual', path: '/qurban',
+    title: 'Kalkulator Qurban — Biaya Kambing & Sapi Patungan | IslamCal',
+    description: 'Hitung biaya qurban kambing atau sapi termasuk patungan 7 orang. Lengkap dengan syarat sah hewan dan waktu penyembelihan.' },
+  { id: 'aqiqah', label: 'Aqiqah', icon: BookOpen, category: '🕋 Ibadah & Ritual', path: '/aqiqah',
+    title: 'Kalkulator Aqiqah — Biaya Kambing untuk Bayi | IslamCal',
+    description: 'Hitung biaya aqiqah anak laki-laki (2 kambing) dan perempuan (1 kambing). Sesuai sunnah hari ke-7 kelahiran.' },
+  { id: 'dzikir', label: 'Dzikir', icon: MoonStar, category: '🕋 Ibadah & Ritual', path: '/dzikir',
+    title: 'Tasbih Digital — Penghitung Dzikir dengan Pengingat Harian | IslamCal',
+    description: 'Tasbih digital online dengan haptic feedback, target hitungan, dan notifikasi pengingat dzikir harian. Lengkap dengan dzikir pagi & petang.' },
+  { id: 'hijri', label: 'Kalender', icon: Calendar, category: '🗓️ Kalender', path: '/kalender-hijriyah',
+    title: 'Konverter Kalender Hijriyah — Masehi ke Hijriyah & Hari Besar | IslamCal',
+    description: 'Konversi tanggal Masehi ke Hijriyah dan sebaliknya. Lihat countdown Ramadhan, Idul Fitri, Idul Adha, dan hari besar Islam lainnya.' },
+];
 
 const TOP_NAV: CalcId[] = ['zakat', 'faraid', 'dzikir', 'hijri'];
 
+const HOME_META = {
+  title: 'IslamCal — Alat Hitung Lengkap untuk Muslim Indonesia',
+  description: 'IslamCal: Zakat Mal, Waris (Faraid), Biaya Haji, Tabungan Haji, Qurban, Aqiqah, Dzikir Counter, dan Konverter Hijriyah. Gratis, offline, tanpa registrasi.',
+};
+
+const pathToCalc = (pathname: string): CalcId => {
+  const item = NAV_ITEMS.find(n => n.path === pathname);
+  return item?.id ?? 'zakat';
+};
+
 const Index: React.FC = () => {
-  const [activeCalc, setActiveCalc] = useState<CalcId>('zakat');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
+  const activeCalc: CalcId = pathToCalc(location.pathname);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
-  const [displayCalc, setDisplayCalc] = useState<CalcId>('zakat');
+  const [displayCalc, setDisplayCalc] = useState<CalcId>(activeCalc);
   const settings = useSettings();
 
-  const switchCalc = useCallback((id: CalcId) => {
-    if (id === activeCalc) return;
+  useEffect(() => {
+    if (displayCalc === activeCalc) return;
     setTransitioning(true);
-    setTimeout(() => {
-      setActiveCalc(id);
-      setDisplayCalc(id);
+    const t = setTimeout(() => {
+      setDisplayCalc(activeCalc);
       setTransitioning(false);
     }, 150);
-  }, [activeCalc]);
+    return () => clearTimeout(t);
+  }, [activeCalc, displayCalc]);
+
+  const switchCalc = useCallback((id: CalcId) => {
+    const item = NAV_ITEMS.find(n => n.id === id);
+    if (item) navigate(item.path);
+  }, [navigate]);
 
   const navigateToTabungan = useCallback((target: number) => {
     setTabunganTarget(target);
@@ -84,8 +124,23 @@ const Index: React.FC = () => {
   const topItems = NAV_ITEMS.filter(n => TOP_NAV.includes(n.id));
   const moreItems = NAV_ITEMS.filter(n => !TOP_NAV.includes(n.id));
 
+  const meta = isHome
+    ? { title: HOME_META.title, description: HOME_META.description, canonical: `${SITE}/` }
+    : { title: activeItem!.title, description: activeItem!.description, canonical: `${SITE}${activeItem!.path}` };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Helmet>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <link rel="canonical" href={meta.canonical} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={meta.canonical} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+      </Helmet>
+
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
@@ -117,7 +172,6 @@ const Index: React.FC = () => {
       {/* Scrollable Main Content */}
       <main className="flex-1 pb-20">
         <div className="max-w-3xl mx-auto p-4 sm:p-6">
-          {/* Calculator content */}
           <div
             className="transition-all duration-200 ease-out"
             style={{
@@ -154,7 +208,6 @@ const Index: React.FC = () => {
             </button>
           ))}
 
-          {/* Selengkapnya menu */}
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <button className="flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
