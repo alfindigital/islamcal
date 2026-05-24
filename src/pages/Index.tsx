@@ -186,7 +186,7 @@ const Index: React.FC = () => {
                 {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
-            {renderCalculator()}
+            <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-muted/40" />}>{renderCalculator()}</Suspense>
           </div>
         </div>
       </main>
