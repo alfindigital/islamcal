@@ -1,19 +1,20 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, lazy, Suspense } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ZakatMal } from '@/components/calculators/ZakatMal';
-import { Faraid } from '@/components/calculators/Faraid';
-import { BiayaHaji } from '@/components/calculators/BiayaHaji';
-import { TabunganHaji } from '@/components/calculators/TabunganHaji';
-import { Qurban } from '@/components/calculators/Qurban';
-import { Aqiqah } from '@/components/calculators/Aqiqah';
-import { DzikirCounter } from '@/components/calculators/DzikirCounter';
-import { HijriConverter } from '@/components/calculators/HijriConverter';
-import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, SunMedium, MoonStar } from 'lucide-react';
-import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
+
+const ZakatMal = lazy(() => import('@/components/calculators/ZakatMal').then(m => ({ default: m.ZakatMal })));
+const Faraid = lazy(() => import('@/components/calculators/Faraid').then(m => ({ default: m.Faraid })));
+const BiayaHaji = lazy(() => import('@/components/calculators/BiayaHaji').then(m => ({ default: m.BiayaHaji })));
+const TabunganHaji = lazy(() => import('@/components/calculators/TabunganHaji').then(m => ({ default: m.TabunganHaji })));
+const Qurban = lazy(() => import('@/components/calculators/Qurban').then(m => ({ default: m.Qurban })));
+const Aqiqah = lazy(() => import('@/components/calculators/Aqiqah').then(m => ({ default: m.Aqiqah })));
+const DzikirCounter = lazy(() => import('@/components/calculators/DzikirCounter').then(m => ({ default: m.DzikirCounter })));
+const HijriConverter = lazy(() => import('@/components/calculators/HijriConverter').then(m => ({ default: m.HijriConverter })));
+const SettingsPanel = lazy(() => import('@/components/shared/SettingsPanel').then(m => ({ default: m.SettingsPanel })));
+const ZakatHistoryPanel = lazy(() => import('@/components/shared/ZakatHistoryPanel').then(m => ({ default: m.ZakatHistoryPanel })));
 const logoImg = '/logo.png';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
@@ -185,7 +186,7 @@ const Index: React.FC = () => {
                 {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
-            {renderCalculator()}
+            <Suspense fallback={<div className="h-64 animate-pulse rounded-xl bg-muted/40" />}>{renderCalculator()}</Suspense>
           </div>
         </div>
       </main>
