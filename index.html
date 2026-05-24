@@ -25,11 +25,23 @@
     <link rel="apple-touch-icon" href="/icon-192.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <link rel="preload" as="image" href="/logo.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.png" fetchpriority="high" imagesrcset="/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" media="all" />
+
+    <style>
+      /* Critical CSS: paints header/hero before main bundle to stabilize mobile LCP */
+      :root { color-scheme: light dark; }
+      html, body { margin: 0; padding: 0; background: hsl(210 20% 98%); color: hsl(215 25% 15%); font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+      @media (prefers-color-scheme: dark) { html, body { background: hsl(215 25% 10%); color: hsl(210 20% 95%); } }
+      #root { min-height: 100vh; display: flex; flex-direction: column; }
+      .lcp-header { position: sticky; top: 0; z-index: 50; background: hsl(160 84% 29%); color: #fff; height: 56px; display: flex; align-items: center; }
+      .lcp-header-inner { display: flex; align-items: center; gap: 10px; padding: 0 16px; max-width: 768px; width: 100%; margin: 0 auto; height: 56px; }
+      .lcp-logo { width: 28px; height: 28px; flex-shrink: 0; }
+      .lcp-title { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
+    </style>
 
     <meta property="og:title" content="IslamCal — Alat Hitung Lengkap untuk Muslim Indonesia">
     <meta property="og:url" content="https://islamcal.lovable.app/">
@@ -53,7 +65,7 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><header class="lcp-header"><div class="lcp-header-inner"><img class="lcp-logo" src="/logo.png" alt="IslamCal" width="28" height="28" fetchpriority="high" decoding="async" /><span class="lcp-title">IslamCal</span></div></header></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
