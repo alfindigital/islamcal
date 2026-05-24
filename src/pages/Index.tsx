@@ -78,23 +78,14 @@ const Index: React.FC = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
-  const [displayCalc, setDisplayCalc] = useState<CalcId>(activeCalc);
   const settings = useSettings();
-
-  useEffect(() => {
-    if (displayCalc === activeCalc) return;
-    setTransitioning(true);
-    const t = setTimeout(() => {
-      setDisplayCalc(activeCalc);
-      setTransitioning(false);
-    }, 150);
-    return () => clearTimeout(t);
-  }, [activeCalc, displayCalc]);
 
   const switchCalc = useCallback((id: CalcId) => {
     const item = NAV_ITEMS.find(n => n.id === id);
-    if (item) navigate(item.path);
+    if (!item) return;
+    // startTransition keeps the previous calc interactive while the new
+    // chunk loads, so the tab switch never blocks the main thread.
+    startTransition(() => navigate(item.path));
   }, [navigate]);
 
   const navigateToTabungan = useCallback((target: number) => {
