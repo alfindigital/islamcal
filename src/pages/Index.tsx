@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useCallback, lazy, Suspense, startTransition } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useSettings } from '@/hooks/useSettings';
@@ -78,23 +78,14 @@ const Index: React.FC = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabunganTarget, setTabunganTarget] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
-  const [displayCalc, setDisplayCalc] = useState<CalcId>(activeCalc);
   const settings = useSettings();
-
-  useEffect(() => {
-    if (displayCalc === activeCalc) return;
-    setTransitioning(true);
-    const t = setTimeout(() => {
-      setDisplayCalc(activeCalc);
-      setTransitioning(false);
-    }, 150);
-    return () => clearTimeout(t);
-  }, [activeCalc, displayCalc]);
 
   const switchCalc = useCallback((id: CalcId) => {
     const item = NAV_ITEMS.find(n => n.id === id);
-    if (item) navigate(item.path);
+    if (!item) return;
+    // startTransition keeps the previous calc interactive while the new
+    // chunk loads, so the tab switch never blocks the main thread.
+    startTransition(() => navigate(item.path));
   }, [navigate]);
 
   const navigateToTabungan = useCallback((target: number) => {
@@ -110,7 +101,7 @@ const Index: React.FC = () => {
   };
 
   const renderCalculator = () => {
-    switch (displayCalc) {
+    switch (activeCalc) {
       case 'zakat': return <ZakatMal />;
       case 'faraid': return <Faraid />;
       case 'haji': return <BiayaHaji onNavigateTabungan={navigateToTabungan} />;
@@ -173,13 +164,7 @@ const Index: React.FC = () => {
       {/* Scrollable Main Content */}
       <main className="flex-1 pb-20">
         <div className="max-w-3xl mx-auto p-4 sm:p-6">
-          <div
-            className="transition-all duration-200 ease-out"
-            style={{
-              opacity: transitioning ? 0 : 1,
-              transform: transitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)',
-            }}
-          >
+          <div key={activeCalc} className="animate-fade-in will-change-[opacity,transform]">
             {activeItem && (
               <div className="mb-4 flex items-center justify-between">
                 <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
