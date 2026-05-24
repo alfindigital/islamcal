@@ -101,7 +101,7 @@ const Index: React.FC = () => {
   };
 
   const renderCalculator = () => {
-    switch (displayCalc) {
+    switch (activeCalc) {
       case 'zakat': return <ZakatMal />;
       case 'faraid': return <Faraid />;
       case 'haji': return <BiayaHaji onNavigateTabungan={navigateToTabungan} />;
