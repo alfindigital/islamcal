@@ -164,13 +164,7 @@ const Index: React.FC = () => {
       {/* Scrollable Main Content */}
       <main className="flex-1 pb-20">
         <div className="max-w-3xl mx-auto p-4 sm:p-6">
-          <div
-            className="transition-all duration-200 ease-out"
-            style={{
-              opacity: transitioning ? 0 : 1,
-              transform: transitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)',
-            }}
-          >
+          <div key={activeCalc} className="animate-fade-in will-change-[opacity,transform]">
             {activeItem && (
               <div className="mb-4 flex items-center justify-between">
                 <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
