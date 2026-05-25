@@ -163,8 +163,10 @@ const Index: React.FC = () => {
         <div className="max-w-3xl mx-auto p-4 sm:p-6">
           <div key={activeCalc} className="animate-fade-in will-change-[opacity,transform]">
             {activeItem && (
-              <div className="mb-4 flex items-center justify-between">
-                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
+              <div className="mb-4 flex items-center justify-between gap-2">
+                <h1 className="font-heading font-extrabold tracking-tight text-xl sm:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {activeItem?.label}
+                </h1>
                 {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
