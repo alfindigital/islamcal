@@ -136,13 +136,15 @@ const Index: React.FC = () => {
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <img src={logoImg} alt="Kalkulator Islami" width={32} height={32} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="flex items-center justify-center h-10 w-10 rounded-xl bg-white shadow-md ring-1 ring-white/40 shrink-0">
+              <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" />
+            </span>
             <div className="flex flex-col leading-none min-w-0">
-              <span className="font-heading font-extrabold tracking-tight text-[19px] sm:text-xl">
-                Islam<span className="text-accent italic">Cal</span>
+              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-2xl text-white drop-shadow-sm">
+                Islam<span className="text-accent">Cal</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.18em] uppercase text-white/70 mt-0.5">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-white/85 mt-1">
                 Alat Hitung Muslim
               </span>
             </div>
