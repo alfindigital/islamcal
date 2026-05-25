@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, SunMedium, MoonStar } from 'lucide-react';
+import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, MoonStar } from 'lucide-react';
 
 const ZakatMal = lazy(() => import('@/components/calculators/ZakatMal').then(m => ({ default: m.ZakatMal })));
 const Faraid = lazy(() => import('@/components/calculators/Faraid').then(m => ({ default: m.Faraid })));
