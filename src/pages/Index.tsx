@@ -134,23 +134,20 @@ const Index: React.FC = () => {
       </Helmet>
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2.5 min-w-0">
-            <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
-            <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
+            <img src={logoImg} alt="Kalkulator Islami" width={32} height={32} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
+            <div className="flex flex-col leading-none min-w-0">
+              <span className="font-heading font-extrabold tracking-tight text-[19px] sm:text-xl">
+                Islam<span className="text-accent italic">Cal</span>
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.18em] uppercase text-white/70 mt-0.5">
+                Alat Hitung Muslim
+              </span>
+            </div>
           </div>
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={settings.toggleDarkMode}
-              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/20 overflow-hidden shadow-sm"
-              aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
-            >
-              <span className="relative h-5 w-5">
-                <SunMedium className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} strokeWidth={2.5} />
-                <MoonStar className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} strokeWidth={2.5} />
-              </span>
-            </button>
             <SettingsPanel
               darkMode={settings.darkMode}
               toggleDarkMode={settings.toggleDarkMode}
