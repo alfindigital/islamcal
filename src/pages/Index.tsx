@@ -176,28 +176,28 @@ const Index: React.FC = () => {
       </main>
 
       {/* Sticky Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
-        <div className="flex items-center justify-center h-14 px-4 max-w-2xl mx-auto gap-2">
+      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
+        <div className="flex items-stretch justify-center h-16 px-2 sm:px-4 max-w-2xl mx-auto gap-1 sm:gap-2">
           {topItems.map(item => (
             <button
               key={item.id}
               onClick={() => switchCalc(item.id)}
-              className={`flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium transition-colors ${
+              className={`flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors ${
                 activeCalc === item.id
                   ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
-              <item.icon className="h-5 w-5 shrink-0" />
-              <span className="mt-0.5 truncate text-[10px]">{item.label}</span>
+              <item.icon className="h-[22px] w-[22px] shrink-0" strokeWidth={2.25} />
+              <span className="mt-1 truncate text-[12px] sm:text-[13px] leading-none">{item.label}</span>
             </button>
           ))}
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <button className="flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
-                <Menu className="h-5 w-5" />
-                <span className="mt-0.5 text-[10px]">Lainnya</span>
+              <button className="flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
+                <Menu className="h-[22px] w-[22px]" strokeWidth={2.25} />
+                <span className="mt-1 text-[12px] sm:text-[13px] leading-none">Lainnya</span>
               </button>
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
