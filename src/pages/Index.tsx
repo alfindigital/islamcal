@@ -13,8 +13,8 @@ const Qurban = lazy(() => import('@/components/calculators/Qurban').then(m => ({
 const Aqiqah = lazy(() => import('@/components/calculators/Aqiqah').then(m => ({ default: m.Aqiqah })));
 const DzikirCounter = lazy(() => import('@/components/calculators/DzikirCounter').then(m => ({ default: m.DzikirCounter })));
 const HijriConverter = lazy(() => import('@/components/calculators/HijriConverter').then(m => ({ default: m.HijriConverter })));
-const SettingsPanel = lazy(() => import('@/components/shared/SettingsPanel').then(m => ({ default: m.SettingsPanel })));
-const ZakatHistoryPanel = lazy(() => import('@/components/shared/ZakatHistoryPanel').then(m => ({ default: m.ZakatHistoryPanel })));
+import { SettingsPanel } from '@/components/shared/SettingsPanel';
+import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
 const logoImg = '/logo.png';
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
