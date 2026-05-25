@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useSettings } from '@/hooks/useSettings';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, SunMedium, MoonStar } from 'lucide-react';
+import { Calculator, BookOpen, Calendar, Heart, Coins, Users, Landmark, Menu, MoonStar } from 'lucide-react';
 
 const ZakatMal = lazy(() => import('@/components/calculators/ZakatMal').then(m => ({ default: m.ZakatMal })));
 const Faraid = lazy(() => import('@/components/calculators/Faraid').then(m => ({ default: m.Faraid })));
@@ -134,23 +134,20 @@ const Index: React.FC = () => {
       </Helmet>
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-primary text-primary-foreground islamic-pattern">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2.5 min-w-0">
-            <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
-            <span className="text-base font-heading font-extrabold tracking-tight">IslamCal</span>
+            <img src={logoImg} alt="Kalkulator Islami" width={32} height={32} fetchPriority="high" decoding="async" className="shrink-0 drop-shadow-md" />
+            <div className="flex flex-col leading-none min-w-0">
+              <span className="font-heading font-extrabold tracking-tight text-[19px] sm:text-xl">
+                Islam<span className="text-accent italic">Cal</span>
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.18em] uppercase text-white/70 mt-0.5">
+                Alat Hitung Muslim
+              </span>
+            </div>
           </div>
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={settings.toggleDarkMode}
-              className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/20 overflow-hidden shadow-sm"
-              aria-label={settings.darkMode ? 'Mode Terang' : 'Mode Gelap'}
-            >
-              <span className="relative h-5 w-5">
-                <SunMedium className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`} strokeWidth={2.5} />
-                <MoonStar className={`absolute inset-0 h-5 w-5 transition-all duration-500 ease-out ${settings.darkMode ? 'opacity-0 -rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} strokeWidth={2.5} />
-              </span>
-            </button>
             <SettingsPanel
               darkMode={settings.darkMode}
               toggleDarkMode={settings.toggleDarkMode}
@@ -166,8 +163,10 @@ const Index: React.FC = () => {
         <div className="max-w-3xl mx-auto p-4 sm:p-6">
           <div key={activeCalc} className="animate-fade-in will-change-[opacity,transform]">
             {activeItem && (
-              <div className="mb-4 flex items-center justify-between">
-                <h1 className="text-lg font-heading font-bold text-foreground">{activeItem?.label}</h1>
+              <div className="mb-4 flex items-center justify-between gap-2">
+                <h1 className="font-heading font-extrabold tracking-tight text-xl sm:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  {activeItem?.label}
+                </h1>
                 {activeCalc === 'zakat' && <ZakatHistoryPanel />}
               </div>
             )}
@@ -177,28 +176,28 @@ const Index: React.FC = () => {
       </main>
 
       {/* Sticky Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
-        <div className="flex items-center justify-center h-14 px-4 max-w-2xl mx-auto gap-2">
+      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
+        <div className="flex items-stretch justify-center h-16 px-2 sm:px-4 max-w-2xl mx-auto gap-1 sm:gap-2">
           {topItems.map(item => (
             <button
               key={item.id}
               onClick={() => switchCalc(item.id)}
-              className={`flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium transition-colors ${
+              className={`flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors ${
                 activeCalc === item.id
                   ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
-              <item.icon className="h-5 w-5 shrink-0" />
-              <span className="mt-0.5 truncate text-[10px]">{item.label}</span>
+              <item.icon className="h-[22px] w-[22px] shrink-0" strokeWidth={2.25} />
+              <span className="mt-1 truncate text-[12px] sm:text-[13px] leading-none">{item.label}</span>
             </button>
           ))}
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <button className="flex flex-col items-center justify-center flex-1 max-w-[5rem] h-12 rounded-lg text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
-                <Menu className="h-5 w-5" />
-                <span className="mt-0.5 text-[10px]">Lainnya</span>
+              <button className="flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
+                <Menu className="h-[22px] w-[22px]" strokeWidth={2.25} />
+                <span className="mt-1 text-[12px] sm:text-[13px] leading-none">Lainnya</span>
               </button>
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
