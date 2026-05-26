@@ -136,15 +136,15 @@ const Index: React.FC = () => {
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 min-w-0">
-            <span className="flex items-center justify-center h-10 w-10 rounded-xl bg-white shadow-lg ring-2 ring-white/70 shrink-0">
-              <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" />
+          <div className="flex items-center gap-2.5 min-w-0 pl-1 pr-3 py-1 rounded-2xl bg-slate-900/35 ring-1 ring-white/15 backdrop-blur-sm">
+            <span className="flex items-center justify-center h-9 w-9 rounded-xl bg-white shadow-md ring-2 ring-white/80 shrink-0">
+              <img src={logoImg} alt="Kalkulator Islami" width={26} height={26} fetchPriority="high" decoding="async" />
             </span>
             <div className="flex flex-col leading-none min-w-0">
-              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-2xl text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
-                Islam<span className="text-accent [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Cal</span>
+              <span className="font-heading font-extrabold tracking-tight text-[18px] sm:text-xl text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+                Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="inline-flex w-fit mt-1.5 px-1.5 py-0.5 rounded-md bg-black/25 backdrop-blur-sm text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-white ring-1 ring-white/15">
+              <span className="mt-1 text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">
                 Alat Hitung Muslim
               </span>
             </div>
