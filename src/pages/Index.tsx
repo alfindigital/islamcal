@@ -137,14 +137,14 @@ const Index: React.FC = () => {
       <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
         <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-3 min-w-0">
-            <span className="flex items-center justify-center h-10 w-10 rounded-xl bg-white shadow-md ring-1 ring-white/40 shrink-0">
+            <span className="flex items-center justify-center h-10 w-10 rounded-xl bg-white shadow-lg ring-2 ring-white/70 shrink-0">
               <img src={logoImg} alt="Kalkulator Islami" width={28} height={28} fetchPriority="high" decoding="async" />
             </span>
             <div className="flex flex-col leading-none min-w-0">
-              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-2xl text-white drop-shadow-sm">
-                Islam<span className="text-accent">Cal</span>
+              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-2xl text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
+                Islam<span className="text-accent [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]">Cal</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-white/85 mt-1">
+              <span className="inline-flex w-fit mt-1.5 px-1.5 py-0.5 rounded-md bg-black/25 backdrop-blur-sm text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-white ring-1 ring-white/15">
                 Alat Hitung Muslim
               </span>
             </div>
