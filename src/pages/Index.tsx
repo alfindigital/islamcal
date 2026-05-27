@@ -145,14 +145,14 @@ const Index: React.FC = () => {
 
       {/* Sticky Header — clean solid emerald, no pattern noise */}
       <header className="sticky top-0 z-50 bg-[hsl(160_84%_24%)] text-white border-b border-black/10 shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_2px_8px_-2px_rgba(0,0,0,0.18)]">
-        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-2.5 min-w-0">
+        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto" style={{ contain: 'layout' }}>
+          <div className="flex items-center gap-2.5 min-w-0 h-10">
             <BrandMark />
-            <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white">
+            <div className="flex flex-col justify-center leading-tight min-w-0 h-9">
+              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white leading-[1.1]">
                 Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65">
+              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65 leading-[1.4] mt-0.5">
                 Alat Hitung Muslim
               </span>
             </div>
