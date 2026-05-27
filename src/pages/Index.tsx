@@ -15,7 +15,15 @@ const DzikirCounter = lazy(() => import('@/components/calculators/DzikirCounter'
 const HijriConverter = lazy(() => import('@/components/calculators/HijriConverter').then(m => ({ default: m.HijriConverter })));
 import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
-const logoImg = '/logo.png';
+
+const BrandMark: React.FC = () => (
+  <span className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-amber-300 to-amber-500 shadow-[0_4px_14px_-2px_rgba(245,158,11,0.55)] ring-1 ring-white/40 shrink-0">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 text-emerald-950" fill="currentColor" aria-hidden="true">
+      <path d="M17.3 15.5A7 7 0 1 1 8.5 6.7a5.6 5.6 0 0 0 8.8 8.8Z" />
+      <path d="M18.2 7.7l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7.7-1.6Z" />
+    </svg>
+  </span>
+);
 
 type CalcId = 'zakat' | 'faraid' | 'haji' | 'tabungan' | 'qurban' | 'aqiqah' | 'dzikir' | 'hijri';
 
@@ -134,17 +142,16 @@ const Index: React.FC = () => {
       </Helmet>
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-primary via-primary to-secondary text-primary-foreground islamic-pattern shadow-md">
-        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
+      <header className="sticky top-0 z-50 relative bg-[linear-gradient(115deg,hsl(160_84%_22%)_0%,hsl(160_84%_29%)_45%,hsl(174_60%_30%)_100%)] text-white shadow-[0_6px_20px_-8px_rgba(0,0,0,0.35)] border-b border-white/10 overflow-hidden">
+        <div className="absolute inset-0 islamic-pattern opacity-60 pointer-events-none" />
+        <div className="relative flex items-center justify-between h-16 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-3 min-w-0">
-            <span className="flex items-center justify-center h-10 w-10 rounded-full bg-white shadow-md shrink-0">
-              <img src={logoImg} alt="Kalkulator Islami" width={26} height={26} fetchPriority="high" decoding="async" />
-            </span>
+            <BrandMark />
             <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-heading font-bold tracking-tight text-[19px] sm:text-xl text-white">
-                Islam<span className="text-amber-300 font-extrabold">Cal</span>
+              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-[22px] text-white">
+                Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.18em] uppercase text-white/80">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-amber-100/85">
                 Alat Hitung Muslim
               </span>
             </div>
