@@ -17,8 +17,11 @@ import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
 
 const BrandMark: React.FC = () => (
-  <span className="flex items-center justify-center h-9 w-9 rounded-lg bg-amber-300 shrink-0">
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-emerald-950" fill="currentColor" aria-hidden="true">
+  <span
+    className="flex items-center justify-center h-9 w-9 rounded-lg bg-amber-300 shrink-0 transition-transform duration-300 ease-out hover:scale-105 motion-safe:animate-[scale-in_0.25s_ease-out]"
+    style={{ contain: 'layout paint' }}
+  >
+    <svg viewBox="0 0 24 24" width={20} height={20} className="text-emerald-950" fill="currentColor" aria-hidden="true">
       <path d="M17.3 15.5A7 7 0 1 1 8.5 6.7a5.6 5.6 0 0 0 8.8 8.8Z" />
     </svg>
   </span>
@@ -142,14 +145,14 @@ const Index: React.FC = () => {
 
       {/* Sticky Header — clean solid emerald, no pattern noise */}
       <header className="sticky top-0 z-50 bg-[hsl(160_84%_24%)] text-white border-b border-black/10 shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_2px_8px_-2px_rgba(0,0,0,0.18)]">
-        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-2.5 min-w-0">
+        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto" style={{ contain: 'layout' }}>
+          <div className="flex items-center gap-2.5 min-w-0 h-10">
             <BrandMark />
-            <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white">
+            <div className="flex flex-col justify-center leading-tight min-w-0 h-9">
+              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white leading-[1.1]">
                 Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65">
+              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65 leading-[1.4] mt-0.5">
                 Alat Hitung Muslim
               </span>
             </div>
@@ -185,20 +188,33 @@ const Index: React.FC = () => {
       {/* Sticky Footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
         <div className="flex items-stretch justify-center h-16 px-2 sm:px-4 max-w-2xl mx-auto gap-1 sm:gap-2">
-          {topItems.map(item => (
-            <button
-              key={item.id}
-              onClick={() => switchCalc(item.id)}
-              className={`flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors ${
-                activeCalc === item.id
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-              }`}
-            >
-              <item.icon className="h-[22px] w-[22px] shrink-0" strokeWidth={2.25} />
-              <span className="mt-1 truncate text-[12px] sm:text-[13px] leading-none">{item.label}</span>
-            </button>
-          ))}
+          {topItems.map(item => {
+            const isActive = activeCalc === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => switchCalc(item.id)}
+                className={`group relative flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors duration-300 ease-out ${
+                  isActive
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                }`}
+              >
+                <item.icon
+                  className={`h-[22px] w-[22px] shrink-0 transition-transform duration-300 ease-out ${
+                    isActive ? 'scale-110 -translate-y-0.5' : 'group-hover:scale-105'
+                  }`}
+                  strokeWidth={2.25}
+                />
+                <span className="mt-1 truncate text-[12px] sm:text-[13px] leading-none">{item.label}</span>
+                <span
+                  className={`pointer-events-none absolute -top-px left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-amber-300 transition-all duration-300 ease-out ${
+                    isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+                  }`}
+                />
+              </button>
+            );
+          })}
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
