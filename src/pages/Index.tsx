@@ -17,10 +17,9 @@ import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
 
 const BrandMark: React.FC = () => (
-  <span className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-amber-300 to-amber-500 shadow-[0_4px_14px_-2px_rgba(245,158,11,0.55)] ring-1 ring-white/40 shrink-0">
-    <svg viewBox="0 0 24 24" className="h-6 w-6 text-emerald-950" fill="currentColor" aria-hidden="true">
+  <span className="flex items-center justify-center h-9 w-9 rounded-lg bg-amber-300 shrink-0">
+    <svg viewBox="0 0 24 24" className="h-5 w-5 text-emerald-950" fill="currentColor" aria-hidden="true">
       <path d="M17.3 15.5A7 7 0 1 1 8.5 6.7a5.6 5.6 0 0 0 8.8 8.8Z" />
-      <path d="M18.2 7.7l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7.7-1.6Z" />
     </svg>
   </span>
 );
