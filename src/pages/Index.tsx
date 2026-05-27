@@ -142,7 +142,7 @@ const Index: React.FC = () => {
       </Helmet>
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-[linear-gradient(115deg,hsl(160_84%_22%)_0%,hsl(160_84%_29%)_45%,hsl(174_60%_30%)_100%)] text-white shadow-[0_6px_20px_-8px_rgba(0,0,0,0.35)] border-b border-white/10">
+      <header className="sticky top-0 z-50 relative bg-[linear-gradient(115deg,hsl(160_84%_22%)_0%,hsl(160_84%_29%)_45%,hsl(174_60%_30%)_100%)] text-white shadow-[0_6px_20px_-8px_rgba(0,0,0,0.35)] border-b border-white/10 overflow-hidden">
         <div className="absolute inset-0 islamic-pattern opacity-60 pointer-events-none" />
         <div className="relative flex items-center justify-between h-16 px-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-3 min-w-0">
