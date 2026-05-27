@@ -152,7 +152,7 @@ const Index: React.FC = () => {
               <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white leading-[1.1]">
                 Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65 leading-[1.4] mt-0.5">
+              <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-white/85 leading-[1.35] mt-0.5">
                 Alat Hitung Muslim
               </span>
             </div>
