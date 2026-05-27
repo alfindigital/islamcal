@@ -17,10 +17,9 @@ import { SettingsPanel } from '@/components/shared/SettingsPanel';
 import { ZakatHistoryPanel } from '@/components/shared/ZakatHistoryPanel';
 
 const BrandMark: React.FC = () => (
-  <span className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-amber-300 to-amber-500 shadow-[0_4px_14px_-2px_rgba(245,158,11,0.55)] ring-1 ring-white/40 shrink-0">
-    <svg viewBox="0 0 24 24" className="h-6 w-6 text-emerald-950" fill="currentColor" aria-hidden="true">
+  <span className="flex items-center justify-center h-9 w-9 rounded-lg bg-amber-300 shrink-0">
+    <svg viewBox="0 0 24 24" className="h-5 w-5 text-emerald-950" fill="currentColor" aria-hidden="true">
       <path d="M17.3 15.5A7 7 0 1 1 8.5 6.7a5.6 5.6 0 0 0 8.8 8.8Z" />
-      <path d="M18.2 7.7l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7.7-1.6Z" />
     </svg>
   </span>
 );
@@ -141,17 +140,16 @@ const Index: React.FC = () => {
         <meta name="twitter:description" content={meta.description} />
       </Helmet>
 
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-50 relative bg-[linear-gradient(115deg,hsl(160_84%_22%)_0%,hsl(160_84%_29%)_45%,hsl(174_60%_30%)_100%)] text-white shadow-[0_6px_20px_-8px_rgba(0,0,0,0.35)] border-b border-white/10 overflow-hidden">
-        <div className="absolute inset-0 islamic-pattern opacity-60 pointer-events-none" />
-        <div className="relative flex items-center justify-between h-16 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 min-w-0">
+      {/* Sticky Header — clean solid emerald, no pattern noise */}
+      <header className="sticky top-0 z-50 bg-[hsl(160_84%_24%)] text-white border-b border-black/10 shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_2px_8px_-2px_rgba(0,0,0,0.18)]">
+        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2.5 min-w-0">
             <BrandMark />
             <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-[22px] text-white">
+              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white">
                 Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-amber-100/85">
+              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65">
                 Alat Hitung Muslim
               </span>
             </div>
