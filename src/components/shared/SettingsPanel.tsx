@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
 import { Settings2, Sun, Moon } from 'lucide-react';
 import type { FontSize } from '@/hooks/useSettings';
