@@ -140,17 +140,16 @@ const Index: React.FC = () => {
         <meta name="twitter:description" content={meta.description} />
       </Helmet>
 
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-50 relative bg-[linear-gradient(115deg,hsl(160_84%_22%)_0%,hsl(160_84%_29%)_45%,hsl(174_60%_30%)_100%)] text-white shadow-[0_6px_20px_-8px_rgba(0,0,0,0.35)] border-b border-white/10 overflow-hidden">
-        <div className="absolute inset-0 islamic-pattern opacity-60 pointer-events-none" />
-        <div className="relative flex items-center justify-between h-16 px-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 min-w-0">
+      {/* Sticky Header — clean solid emerald, no pattern noise */}
+      <header className="sticky top-0 z-50 bg-[hsl(160_84%_24%)] text-white border-b border-black/10 shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_2px_8px_-2px_rgba(0,0,0,0.18)]">
+        <div className="flex items-center justify-between h-14 px-4 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2.5 min-w-0">
             <BrandMark />
             <div className="flex flex-col leading-tight min-w-0">
-              <span className="font-heading font-extrabold tracking-tight text-[20px] sm:text-[22px] text-white">
+              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white">
                 Islam<span className="text-amber-300">Cal</span>
               </span>
-              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-amber-100/85">
+              <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-white/65">
                 Alat Hitung Muslim
               </span>
             </div>
