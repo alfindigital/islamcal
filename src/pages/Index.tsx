@@ -149,10 +149,10 @@ const Index: React.FC = () => {
           <div className="flex items-center gap-2.5 min-w-0 h-10">
             <BrandMark />
             <div className="flex flex-col justify-center leading-tight min-w-0 h-9">
-              <span className="font-heading font-bold tracking-tight text-[18px] sm:text-[19px] text-white leading-[1.1]">
-                Islam<span className="text-amber-300">Cal</span>
+              <span className="brand-title font-heading font-bold tracking-tight text-[18px] sm:text-[19px] leading-[1.1]">
+                Islam<span className="brand-accent">Cal</span>
               </span>
-              <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase text-white/85 leading-[1.35] mt-0.5">
+              <span className="brand-tagline text-[11px] sm:text-[12px] font-semibold tracking-[0.14em] uppercase leading-[1.35] mt-0.5">
                 Alat Hitung Muslim
               </span>
             </div>

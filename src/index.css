@@ -147,6 +147,20 @@
   background-size: 40px 40px;
 }
 
+/* Brand lockup — locked to the emerald header in both light and dark mode */
+.brand-title,
+.dark .brand-title {
+  color: #ffffff;
+}
+.brand-accent,
+.dark .brand-accent {
+  color: hsl(43 96% 64%); /* amber-300 */
+}
+.brand-tagline,
+.dark .brand-tagline {
+  color: hsl(0 0% 100% / 0.85);
+}
+
 /* Smooth animations */
 .result-enter {
   animation: resultSlideIn 0.4s ease-out;
