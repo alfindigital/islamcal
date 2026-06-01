@@ -267,7 +267,7 @@ export const Faraid: React.FC = () => {
           <IDRInput value={totalHarta} onChange={setTotalHarta} label="Total Harta Peninggalan" />
           <IDRInput value={totalUtang} onChange={setTotalUtang} label="Total Utang Almarhum" />
           <IDRInput value={wasiat} onChange={setWasiat} label="Wasiat (maks 1/3 harta setelah utang)" />
-          {wasiatWarning && <p className="text-xs text-destructive">⚠️ {wasiatWarning}</p>}
+          {wasiatWarning && <p className="text-xs text-destructive">{wasiatWarning}</p>}
           <div className="flex justify-between items-center pt-2">
             <span className="text-sm font-medium">Harta Bersih:</span>
             <span className="font-bold text-primary">{formatIDR(hartaBersih)}</span>
@@ -329,8 +329,8 @@ export const Faraid: React.FC = () => {
 
           {result && (
             <ResultCard title="Hasil Pembagian Waris">
-              {result.awl && <p className="text-xs bg-accent/20 text-accent-foreground rounded px-2 py-1 mb-3">⚠️ Terjadi <strong>Awl (العول)</strong> — bagian disesuaikan proporsional karena total furudh melebihi harta.</p>}
-              {result.radd && <p className="text-xs bg-accent/20 text-accent-foreground rounded px-2 py-1 mb-3">ℹ️ Terjadi <strong>Radd (الرد)</strong> — sisa harta didistribusikan proporsional ke ahli waris furudh.</p>}
+              {result.awl && <p className="text-xs bg-accent/20 text-accent-foreground rounded px-2 py-1 mb-3">Terjadi <strong>Awl (العول)</strong> — bagian disesuaikan proporsional karena total furudh melebihi harta.</p>}
+              {result.radd && <p className="text-xs bg-accent/20 text-accent-foreground rounded px-2 py-1 mb-3">Terjadi <strong>Radd (الرد)</strong> — sisa harta didistribusikan proporsional ke ahli waris furudh.</p>}
 
               {/* Simple donut chart */}
               <div className="flex justify-center mb-4">

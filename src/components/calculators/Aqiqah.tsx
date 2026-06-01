@@ -32,8 +32,8 @@ export const Aqiqah: React.FC = () => {
         <div>
           <label className="block text-sm font-medium mb-1.5">Jenis Kelamin Anak</label>
           <div className="flex flex-col sm:flex-row gap-2">
-            <Button variant={jenisKelamin === 'L' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('L')}>👦 Laki-laki (2 kambing)</Button>
-            <Button variant={jenisKelamin === 'P' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('P')}>👧 Perempuan (1 kambing)</Button>
+            <Button variant={jenisKelamin === 'L' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('L')}>Laki-laki (2 kambing)</Button>
+            <Button variant={jenisKelamin === 'P' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs sm:text-sm" onClick={() => setJenisKelamin('P')}>Perempuan (1 kambing)</Button>
           </div>
         </div>
 
@@ -59,12 +59,12 @@ export const Aqiqah: React.FC = () => {
         </ResultCard>
 
         <div className="border rounded-lg p-4 space-y-2">
-          <h4 className="font-semibold text-sm">📋 Informasi Aqiqah</h4>
-          <ul className="text-sm text-muted-foreground space-y-1.5">
-            <li>⏰ Waktu sunnah: hari ke-7 setelah kelahiran (boleh kapan saja jika terlewat)</li>
-            <li>✂️ Disunnahkan bersamaan dengan mencukur rambut dan memberi nama</li>
-            <li>📦 Distribusi daging: ⅓ keluarga, ⅓ sedekah fakir miskin, ⅓ hadiah; boleh dimasak dan diundangkan</li>
-            <li>🐐 Hewan aqiqah sama syaratnya dengan hewan qurban</li>
+          <h4 className="font-semibold text-sm">Informasi Aqiqah</h4>
+          <ul className="text-sm text-muted-foreground space-y-1.5 list-disc pl-5">
+            <li>Waktu sunnah: hari ke-7 setelah kelahiran (boleh kapan saja jika terlewat)</li>
+            <li>Disunnahkan bersamaan dengan mencukur rambut dan memberi nama</li>
+            <li>Distribusi daging: ⅓ keluarga, ⅓ sedekah fakir miskin, ⅓ hadiah; boleh dimasak dan diundangkan</li>
+            <li>Hewan aqiqah sama syaratnya dengan hewan qurban</li>
           </ul>
         </div>
       </CardContent></Card>

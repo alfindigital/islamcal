@@ -108,7 +108,7 @@ export const HijriConverter: React.FC = () => {
       {/* Upcoming events */}
       <Card>
         <CardContent className="pt-5">
-          <h3 className="font-semibold text-sm mb-3">🗓️ Hari-Hari Penting Islam Terdekat</h3>
+          <h3 className="font-semibold text-sm mb-3">Hari-Hari Penting Islam Terdekat</h3>
           <div className="space-y-3">
             {upcomingEvents.map((event, i) => (
               <div key={i} className="flex items-center justify-between border-b last:border-0 pb-2 last:pb-0">

@@ -37,7 +37,7 @@ export const Qurban: React.FC = () => {
         <div>
           <label className="block text-sm font-medium mb-1.5">Jenis Hewan</label>
           <div className="flex flex-wrap gap-2">
-            {([['kambing', '🐐 Kambing/Domba'], ['sapi', '🐄 Sapi']] as const).map(([val, label]) => (
+            {([['kambing', 'Kambing/Domba'], ['sapi', 'Sapi']] as const).map(([val, label]) => (
               <Button key={val} variant={jenis === val ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => handleJenisChange(val as AnimalType)}>{label}</Button>
             ))}
           </div>
@@ -66,20 +66,19 @@ export const Qurban: React.FC = () => {
         </ResultCard>
 
         <div className="border rounded-lg p-4 space-y-2">
-          <h4 className="font-semibold text-sm">✅ Syarat Sah Hewan Qurban</h4>
-          <ul className="text-sm text-muted-foreground space-y-1.5">
-            <li>✅ Kambing/domba minimal 1 tahun (atau sudah tanggal gigi)</li>
-            <li>✅ Sapi/kerbau minimal 2 tahun</li>
-            
-            <li>✅ Sehat, tidak cacat (buta, pincang parah, kurus, telinga/tanduk patah mayoritas)</li>
-            <li>✅ Bukan hewan yang sedang hamil</li>
+          <h4 className="font-semibold text-sm">Syarat Sah Hewan Qurban</h4>
+          <ul className="text-sm text-muted-foreground space-y-1.5 list-disc pl-5">
+            <li>Kambing/domba minimal 1 tahun (atau sudah tanggal gigi)</li>
+            <li>Sapi/kerbau minimal 2 tahun</li>
+            <li>Sehat, tidak cacat (buta, pincang parah, kurus, telinga/tanduk patah mayoritas)</li>
+            <li>Bukan hewan yang sedang hamil</li>
           </ul>
         </div>
 
         <div className="border rounded-lg p-4 space-y-2">
-          <h4 className="font-semibold text-sm">⏰ Waktu Penyembelihan</h4>
+          <h4 className="font-semibold text-sm">Waktu Penyembelihan</h4>
           <p className="text-sm text-muted-foreground">10 Dzulhijjah setelah sholat Eid — 13 Dzulhijjah sebelum Maghrib</p>
-          <h4 className="font-semibold text-sm mt-3">📦 Distribusi Sunnah</h4>
+          <h4 className="font-semibold text-sm mt-3">Distribusi Sunnah</h4>
           <p className="text-sm text-muted-foreground">⅓ keluarga • ⅓ sedekah fakir miskin • ⅓ hadiah tetangga/kerabat</p>
         </div>
       </CardContent></Card>

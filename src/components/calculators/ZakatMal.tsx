@@ -113,7 +113,7 @@ export const ZakatMal: React.FC = () => {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Total Nilai:</span><span className="font-semibold">{formatIDR(emasResult.totalNilai)}</span></div>
                   <div className="flex justify-between"><span>Nisab ({emasResult.nisab}g):</span>
-                    <span className={`font-semibold ${emasResult.wajib ? 'text-primary' : 'text-destructive'}`}>{emasResult.wajib ? '✅ Wajib Zakat' : '❌ Belum Nisab'}</span>
+                    <span className={`font-semibold ${emasResult.wajib ? 'text-primary' : 'text-destructive'}`}>{emasResult.wajib ? 'Wajib Zakat' : 'Belum Nisab'}</span>
                   </div>
                   {emasResult.wajib && (
                     <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Zakat (2,5%):</span><span className="font-bold text-primary">{formatIDR(emasResult.zakatNominal)}</span></div>
@@ -138,7 +138,7 @@ export const ZakatMal: React.FC = () => {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Nisab (85g emas):</span><span className="font-semibold">{formatIDR(uangResult.nisabUang)}</span></div>
                   <div className="flex justify-between"><span>Status:</span>
-                    <span className={`font-semibold ${uangResult.wajib ? 'text-primary' : 'text-destructive'}`}>{uangResult.wajib ? '✅ Wajib Zakat' : '❌ Belum Nisab'}</span>
+                    <span className={`font-semibold ${uangResult.wajib ? 'text-primary' : 'text-destructive'}`}>{uangResult.wajib ? 'Wajib Zakat' : 'Belum Nisab'}</span>
                   </div>
                   {uangResult.wajib && (
                     <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Zakat (2,5%):</span><span className="font-bold text-primary">{formatIDR(uangResult.zakatNominal)}</span></div>
@@ -167,7 +167,7 @@ export const ZakatMal: React.FC = () => {
                   <div className="flex justify-between"><span>Harta Bersih Kena Zakat:</span><span className="font-semibold">{formatIDR(dagangResult.hartaBersih)}</span></div>
                   <div className="flex justify-between"><span>Nisab (85g emas):</span><span>{formatIDR(nisabUang)}</span></div>
                   <div className="flex justify-between"><span>Status:</span>
-                    <span className={`font-semibold ${dagangResult.wajib ? 'text-primary' : 'text-destructive'}`}>{dagangResult.wajib ? '✅ Wajib Zakat' : '❌ Belum Nisab'}</span>
+                    <span className={`font-semibold ${dagangResult.wajib ? 'text-primary' : 'text-destructive'}`}>{dagangResult.wajib ? 'Wajib Zakat' : 'Belum Nisab'}</span>
                   </div>
                   {dagangResult.wajib && (
                     <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Zakat (2,5%):</span><span className="font-bold text-primary">{formatIDR(dagangResult.zakatNominal)}</span></div>
@@ -202,7 +202,7 @@ export const ZakatMal: React.FC = () => {
               <ResultCard title="Hasil Perhitungan">
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Nisab (653 kg gabah):</span>
-                    <span className={`font-semibold ${taniResult.wajib ? 'text-primary' : 'text-destructive'}`}>{taniResult.wajib ? '✅ Wajib Zakat' : '❌ Belum Nisab'}</span>
+                    <span className={`font-semibold ${taniResult.wajib ? 'text-primary' : 'text-destructive'}`}>{taniResult.wajib ? 'Wajib Zakat' : 'Belum Nisab'}</span>
                   </div>
                   {taniResult.wajib && (
                     <>
