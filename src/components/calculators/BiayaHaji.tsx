@@ -81,7 +81,7 @@ export const BiayaHaji: React.FC<{ onNavigateTabungan?: (target: number) => void
             <ShareButton getText={() => `Estimasi Biaya Haji ${tipe} ${tahun}: ${formatIDR(result.totalPerOrang)}/orang${jumlahJamaah > 1 ? ` × ${jumlahJamaah} = ${formatIDR(result.grandTotal)}` : ''}`} />
             {onNavigateTabungan && (
               <Button size="sm" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground" onClick={() => onNavigateTabungan(result.grandTotal)}>
-                💰 Mulai Menabung →
+                Mulai Menabung →
               </Button>
             )}
           </div>

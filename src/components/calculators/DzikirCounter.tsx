@@ -233,7 +233,6 @@ export const DzikirCounter: React.FC = () => {
 
       {!isActive && (
         <div className="text-center py-12 text-muted-foreground">
-          <p className="text-4xl mb-3">📿</p>
           <p>Pilih dzikir di atas untuk memulai</p>
         </div>
       )}
