@@ -86,6 +86,25 @@ export const ZakatMal: React.FC = () => {
     return { wajib, zakatKg, zakatIDR, nisabKg, rate };
   }, [hasilPanen, jenisPengairan, hargaBeras]);
 
+  const profesiResult = useMemo(() => {
+    const penghasilanTahunan = (gajiBulanan + pendapatanLain) * 12;
+    const dasar = metodeProfesi === 'neto'
+      ? Math.max(0, penghasilanTahunan - kebutuhanPokok * 12)
+      : penghasilanTahunan;
+    const wajib = dasar >= nisabUang;
+    const zakatTahunan = wajib ? dasar * 0.025 : 0;
+    const zakatBulanan = zakatTahunan / 12;
+    return { penghasilanTahunan, dasar, wajib, zakatTahunan, zakatBulanan };
+  }, [gajiBulanan, pendapatanLain, kebutuhanPokok, metodeProfesi, nisabUang]);
+
+  const fitrahResult = useMemo(() => {
+    // 2.5 kg beras per jiwa (standar BAZNAS Indonesia)
+    const kgPerJiwa = 2.5;
+    const totalKg = jumlahJiwa * kgPerJiwa;
+    const totalIDR = totalKg * hargaBerasFitrah;
+    return { kgPerJiwa, totalKg, totalIDR };
+  }, [jumlahJiwa, hargaBerasFitrah]);
+
   return (
     <div>
       <p className="text-muted-foreground text-sm mb-3">Hitung zakat harta Anda sesuai ketentuan syariat Islam.</p>
