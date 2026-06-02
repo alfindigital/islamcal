@@ -40,6 +40,16 @@ export const ZakatMal: React.FC = () => {
   const [jenisPengairan, setJenisPengairan] = useState<'hujan' | 'irigasi' | 'campuran'>('hujan');
   const [hargaBeras, setHargaBeras] = useState(15000);
 
+  // Profesi / Penghasilan
+  const [gajiBulanan, setGajiBulanan] = useState(0);
+  const [pendapatanLain, setPendapatanLain] = useState(0);
+  const [kebutuhanPokok, setKebutuhanPokok] = useState(0);
+  const [metodeProfesi, setMetodeProfesi] = useState<'bruto' | 'neto'>('neto');
+
+  // Fitrah
+  const [jumlahJiwa, setJumlahJiwa] = useState(1);
+  const [hargaBerasFitrah, setHargaBerasFitrah] = useState(15000);
+
   const nisabEmas = 85;
   const nisabPerak = 595;
   const nisabUang = useMemo(() => nisabEmas * hargaEmas, [hargaEmas]);
