@@ -117,11 +117,13 @@ export const ZakatMal: React.FC = () => {
           setTabTransitioning(false);
         }, 150);
       }}>
-        <TabsList className="grid grid-cols-4 w-full mb-4">
-          <TabsTrigger value="emas" className="text-[10px] sm:text-xs px-1 sm:px-3">Emas & Perak</TabsTrigger>
-          <TabsTrigger value="uang" className="text-[10px] sm:text-xs px-1 sm:px-3">Uang</TabsTrigger>
-          <TabsTrigger value="dagang" className="text-[10px] sm:text-xs px-1 sm:px-3">Bisnis</TabsTrigger>
-          <TabsTrigger value="tani" className="text-[10px] sm:text-xs px-1 sm:px-3">Pertanian</TabsTrigger>
+        <TabsList className="grid grid-cols-3 sm:grid-cols-6 w-full mb-4 h-auto">
+          <TabsTrigger value="emas" className="text-[10px] sm:text-xs px-1 sm:px-2">Emas & Perak</TabsTrigger>
+          <TabsTrigger value="uang" className="text-[10px] sm:text-xs px-1 sm:px-2">Uang</TabsTrigger>
+          <TabsTrigger value="dagang" className="text-[10px] sm:text-xs px-1 sm:px-2">Bisnis</TabsTrigger>
+          <TabsTrigger value="tani" className="text-[10px] sm:text-xs px-1 sm:px-2">Pertanian</TabsTrigger>
+          <TabsTrigger value="profesi" className="text-[10px] sm:text-xs px-1 sm:px-2">Profesi</TabsTrigger>
+          <TabsTrigger value="fitrah" className="text-[10px] sm:text-xs px-1 sm:px-2">Fitrah</TabsTrigger>
         </TabsList>
 
         <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)' }}>
