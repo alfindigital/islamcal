@@ -1,6 +1,6 @@
 export interface ZakatHistoryEntry {
   id: string;
-  type: 'emas' | 'perak' | 'uang' | 'dagang' | 'tani';
+  type: 'emas' | 'perak' | 'uang' | 'dagang' | 'tani' | 'profesi' | 'fitrah';
   label: string;
   amount: number;
   details: string;

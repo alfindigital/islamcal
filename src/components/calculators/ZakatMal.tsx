@@ -40,6 +40,16 @@ export const ZakatMal: React.FC = () => {
   const [jenisPengairan, setJenisPengairan] = useState<'hujan' | 'irigasi' | 'campuran'>('hujan');
   const [hargaBeras, setHargaBeras] = useState(15000);
 
+  // Profesi / Penghasilan
+  const [gajiBulanan, setGajiBulanan] = useState(0);
+  const [pendapatanLain, setPendapatanLain] = useState(0);
+  const [kebutuhanPokok, setKebutuhanPokok] = useState(0);
+  const [metodeProfesi, setMetodeProfesi] = useState<'bruto' | 'neto'>('neto');
+
+  // Fitrah
+  const [jumlahJiwa, setJumlahJiwa] = useState(1);
+  const [hargaBerasFitrah, setHargaBerasFitrah] = useState(15000);
+
   const nisabEmas = 85;
   const nisabPerak = 595;
   const nisabUang = useMemo(() => nisabEmas * hargaEmas, [hargaEmas]);
@@ -76,6 +86,25 @@ export const ZakatMal: React.FC = () => {
     return { wajib, zakatKg, zakatIDR, nisabKg, rate };
   }, [hasilPanen, jenisPengairan, hargaBeras]);
 
+  const profesiResult = useMemo(() => {
+    const penghasilanTahunan = (gajiBulanan + pendapatanLain) * 12;
+    const dasar = metodeProfesi === 'neto'
+      ? Math.max(0, penghasilanTahunan - kebutuhanPokok * 12)
+      : penghasilanTahunan;
+    const wajib = dasar >= nisabUang;
+    const zakatTahunan = wajib ? dasar * 0.025 : 0;
+    const zakatBulanan = zakatTahunan / 12;
+    return { penghasilanTahunan, dasar, wajib, zakatTahunan, zakatBulanan };
+  }, [gajiBulanan, pendapatanLain, kebutuhanPokok, metodeProfesi, nisabUang]);
+
+  const fitrahResult = useMemo(() => {
+    // 2.5 kg beras per jiwa (standar BAZNAS Indonesia)
+    const kgPerJiwa = 2.5;
+    const totalKg = jumlahJiwa * kgPerJiwa;
+    const totalIDR = totalKg * hargaBerasFitrah;
+    return { kgPerJiwa, totalKg, totalIDR };
+  }, [jumlahJiwa, hargaBerasFitrah]);
+
   return (
     <div>
       <p className="text-muted-foreground text-sm mb-3">Hitung zakat harta Anda sesuai ketentuan syariat Islam.</p>
@@ -88,11 +117,13 @@ export const ZakatMal: React.FC = () => {
           setTabTransitioning(false);
         }, 150);
       }}>
-        <TabsList className="grid grid-cols-4 w-full mb-4">
-          <TabsTrigger value="emas" className="text-[10px] sm:text-xs px-1 sm:px-3">Emas & Perak</TabsTrigger>
-          <TabsTrigger value="uang" className="text-[10px] sm:text-xs px-1 sm:px-3">Uang</TabsTrigger>
-          <TabsTrigger value="dagang" className="text-[10px] sm:text-xs px-1 sm:px-3">Bisnis</TabsTrigger>
-          <TabsTrigger value="tani" className="text-[10px] sm:text-xs px-1 sm:px-3">Pertanian</TabsTrigger>
+        <TabsList className="grid grid-cols-3 sm:grid-cols-6 w-full mb-4 h-auto">
+          <TabsTrigger value="emas" className="text-[10px] sm:text-xs px-1 sm:px-2">Emas & Perak</TabsTrigger>
+          <TabsTrigger value="uang" className="text-[10px] sm:text-xs px-1 sm:px-2">Uang</TabsTrigger>
+          <TabsTrigger value="dagang" className="text-[10px] sm:text-xs px-1 sm:px-2">Bisnis</TabsTrigger>
+          <TabsTrigger value="tani" className="text-[10px] sm:text-xs px-1 sm:px-2">Pertanian</TabsTrigger>
+          <TabsTrigger value="profesi" className="text-[10px] sm:text-xs px-1 sm:px-2">Profesi</TabsTrigger>
+          <TabsTrigger value="fitrah" className="text-[10px] sm:text-xs px-1 sm:px-2">Fitrah</TabsTrigger>
         </TabsList>
 
         <div className="transition-all duration-200 ease-out" style={{ opacity: tabTransitioning ? 0 : 1, transform: tabTransitioning ? 'translateY(8px) scale(0.97)' : 'translateY(0) scale(1)' }}>
@@ -217,6 +248,84 @@ export const ZakatMal: React.FC = () => {
                 </div>
               </ResultCard>
             )}
+          </CardContent></Card>
+        </TabsContent>
+
+        <TabsContent value="profesi">
+          <Card><CardContent className="pt-5 space-y-4">
+            <p className="text-xs text-muted-foreground">Dasar: Fatwa MUI No. 3/2003 — analogi zakat emas (nisab 85g, 2,5%). Boleh ditunaikan bulanan dari penghasilan bruto, atau tahunan dari neto (setelah kebutuhan pokok).</p>
+            <IDRInput value={gajiBulanan} onChange={setGajiBulanan} label="Gaji/Penghasilan per Bulan" />
+            <IDRInput value={pendapatanLain} onChange={setPendapatanLain} label="Pendapatan Lain per Bulan (bonus, dll)" />
+            <div>
+              <label className="block text-sm font-medium mb-1.5">Metode Perhitungan</label>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <Button variant={metodeProfesi === 'neto' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs" onClick={() => setMetodeProfesi('neto')}>Neto (setelah kebutuhan pokok)</Button>
+                <Button variant={metodeProfesi === 'bruto' ? 'default' : 'outline'} size="sm" className="flex-1 text-xs" onClick={() => setMetodeProfesi('bruto')}>Bruto (penghasilan kotor)</Button>
+              </div>
+            </div>
+            {metodeProfesi === 'neto' && (
+              <IDRInput value={kebutuhanPokok} onChange={setKebutuhanPokok} label="Kebutuhan Pokok per Bulan (pengurang)" />
+            )}
+
+            {(gajiBulanan + pendapatanLain) > 0 && (
+              <ResultCard title="Hasil Perhitungan">
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between"><span>Penghasilan Tahunan:</span><span className="font-semibold">{formatIDR(profesiResult.penghasilanTahunan)}</span></div>
+                  <div className="flex justify-between"><span>Dasar Zakat ({metodeProfesi}):</span><span className="font-semibold">{formatIDR(profesiResult.dasar)}</span></div>
+                  <div className="flex justify-between"><span>Nisab (85g emas/th):</span><span>{formatIDR(nisabUang)}</span></div>
+                  <div className="flex justify-between"><span>Status:</span>
+                    <span className={`font-semibold ${profesiResult.wajib ? 'text-primary' : 'text-destructive'}`}>{profesiResult.wajib ? 'Wajib Zakat' : 'Belum Nisab'}</span>
+                  </div>
+                  {profesiResult.wajib && (
+                    <>
+                      <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Zakat per Tahun (2,5%):</span><span className="font-bold text-primary">{formatIDR(profesiResult.zakatTahunan)}</span></div>
+                      <div className="flex justify-between"><span>Setara per Bulan:</span><span className="font-semibold text-primary">{formatIDR(Math.round(profesiResult.zakatBulanan))}</span></div>
+                    </>
+                  )}
+                </div>
+                <div className="mt-3 flex gap-2">
+                  <ShareButton getText={() => `Zakat Profesi: Dasar ${formatIDR(profesiResult.dasar)}/th. Zakat: ${formatIDR(profesiResult.zakatTahunan)}/th (${formatIDR(Math.round(profesiResult.zakatBulanan))}/bln)`} />
+                  {profesiResult.wajib && <Button variant="outline" size="sm" className="gap-1.5 text-xs" onClick={() => { saveZakatEntry({ type: 'profesi', label: 'Zakat Profesi', amount: profesiResult.zakatTahunan, details: `Bulanan ${formatIDR(Math.round(profesiResult.zakatBulanan))}` }); toast.success('Tersimpan di riwayat'); }}><Save className="h-3.5 w-3.5" />Simpan</Button>}
+                </div>
+              </ResultCard>
+            )}
+          </CardContent></Card>
+        </TabsContent>
+
+        <TabsContent value="fitrah">
+          <Card><CardContent className="pt-5 space-y-4">
+            <p className="text-xs text-muted-foreground">Wajib bagi setiap muslim yang mampu, ditunaikan sebelum sholat Idul Fitri. Standar BAZNAS: 2,5 kg beras (atau 3,5 liter) per jiwa, boleh dengan uang seharga itu.</p>
+            <div>
+              <label className="block text-sm font-medium mb-1.5">Jumlah Jiwa (termasuk yang ditanggung)</label>
+              <div className="flex items-center gap-3">
+                <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setJumlahJiwa(Math.max(1, jumlahJiwa - 1))}>-</Button>
+                <span className="font-semibold w-8 text-center">{jumlahJiwa}</span>
+                <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setJumlahJiwa(Math.min(30, jumlahJiwa + 1))}>+</Button>
+              </div>
+            </div>
+            <IDRInput value={hargaBerasFitrah} onChange={setHargaBerasFitrah} label="Harga Beras per kg (sesuai yang dikonsumsi)" />
+
+            <ResultCard title="Hasil Perhitungan">
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between"><span>Per jiwa:</span><span className="font-semibold">{fitrahResult.kgPerJiwa} kg beras</span></div>
+                <div className="flex justify-between"><span>Total beras:</span><span className="font-semibold">{fitrahResult.totalKg} kg</span></div>
+                <div className="flex justify-between text-base pt-2 border-t border-primary/20"><span className="font-semibold">Setara Uang:</span><span className="font-bold text-primary">{formatIDR(fitrahResult.totalIDR)}</span></div>
+              </div>
+              <div className="mt-3 flex gap-2">
+                <ShareButton getText={() => `Zakat Fitrah ${jumlahJiwa} jiwa: ${fitrahResult.totalKg}kg beras atau ${formatIDR(fitrahResult.totalIDR)}`} />
+                <Button variant="outline" size="sm" className="gap-1.5 text-xs" onClick={() => { saveZakatEntry({ type: 'fitrah', label: 'Zakat Fitrah', amount: fitrahResult.totalIDR, details: `${jumlahJiwa} jiwa × 2,5kg` }); toast.success('Tersimpan di riwayat'); }}><Save className="h-3.5 w-3.5" />Simpan</Button>
+              </div>
+            </ResultCard>
+
+            <div className="border rounded-lg p-4 space-y-1.5">
+              <h4 className="font-semibold text-sm">Catatan</h4>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+                <li>Wajib bagi yang memiliki kelebihan makanan pada malam & siang hari raya</li>
+                <li>Ditunaikan untuk diri sendiri & seluruh tanggungan (istri, anak, dll)</li>
+                <li>Waktu utama: setelah fajar sampai sebelum sholat Id</li>
+                <li>Madzhab Syafi'i mengutamakan bentuk makanan pokok; mayoritas ulama Indonesia (BAZNAS/MUI) membolehkan uang setara</li>
+              </ul>
+            </div>
           </CardContent></Card>
         </TabsContent>
       </div>
