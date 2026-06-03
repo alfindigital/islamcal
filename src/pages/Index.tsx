@@ -194,19 +194,20 @@ const Index: React.FC = () => {
               <button
                 key={item.id}
                 onClick={() => switchCalc(item.id)}
-                className={`group relative flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors duration-300 ease-out ${
+                aria-label={item.label}
+                title={item.label}
+                className={`group relative flex items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors duration-300 ease-out ${
                   isActive
                     ? 'bg-primary text-primary-foreground'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 }`}
               >
                 <item.icon
-                  className={`h-[22px] w-[22px] shrink-0 transition-transform duration-300 ease-out ${
-                    isActive ? 'scale-110 -translate-y-0.5' : 'group-hover:scale-105'
+                  className={`h-6 w-6 shrink-0 transition-transform duration-300 ease-out ${
+                    isActive ? 'scale-110' : 'group-hover:scale-105'
                   }`}
                   strokeWidth={2.25}
                 />
-                <span className="mt-1 truncate text-[12px] sm:text-[13px] leading-none">{item.label}</span>
                 <span
                   className={`pointer-events-none absolute -top-px left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-amber-300 transition-all duration-300 ease-out ${
                     isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
@@ -218,9 +219,8 @@ const Index: React.FC = () => {
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <button className="flex flex-col items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya">
-                <Menu className="h-[22px] w-[22px]" strokeWidth={2.25} />
-                <span className="mt-1 text-[12px] sm:text-[13px] leading-none">Lainnya</span>
+              <button className="flex items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya" title="Lainnya">
+                <Menu className="h-6 w-6" strokeWidth={2.25} />
               </button>
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
