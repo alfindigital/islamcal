@@ -209,7 +209,7 @@ const Index: React.FC = () => {
                   strokeWidth={2.25}
                 />
                 <span
-                  className={`pointer-events-none absolute -top-px left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-amber-300 transition-all duration-300 ease-out ${
+                  className={`pointer-events-none absolute -top-px left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 ease-out ${
                     isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
                   }`}
                 />
