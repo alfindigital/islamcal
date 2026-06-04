@@ -22,9 +22,9 @@ const BrandMark: React.FC = () => (
     style={{ contain: 'layout paint' }}
     aria-label="IslamCal"
   >
-    {/* Mihrab arch mark */}
-    <svg viewBox="0 0 24 28" width={18} height={22} className="text-white" fill="currentColor" aria-hidden="true">
-      <path d="M12 1.2c-3.2 2.1-5.4 5.3-5.4 9.1 0 2.4 1 4.5 2.7 6.1V26H5.2v1.6h13.6V26H14.7V16.4c1.7-1.6 2.7-3.7 2.7-6.1 0-3.8-2.2-7-5.4-9.1Zm0 3.4c2 1.6 3.4 3.7 3.4 5.7 0 1.9-1 3.5-2.4 4.6h-2c-1.4-1.1-2.4-2.7-2.4-4.6 0-2 1.4-4.1 3.4-5.7Z" />
+    {/* Chunky mihrab arch mark */}
+    <svg viewBox="0 0 32 32" width={22} height={22} className="text-white" fill="currentColor" aria-hidden="true">
+      <path d="M16 4c-5 3-8 7-8 12 0 3.2 1.4 6 3.6 8v6H6v2h20v-2h-5.6v-6c2.2-2 3.6-4.8 3.6-8 0-5-3-9-8-12Z" />
     </svg>
   </span>
 );
