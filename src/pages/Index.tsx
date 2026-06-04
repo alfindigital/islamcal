@@ -20,9 +20,11 @@ const BrandMark: React.FC = () => (
   <span
     className="flex items-center justify-center h-9 w-9 rounded-lg bg-white/10 ring-1 ring-white/25 shrink-0 transition-transform duration-300 ease-out hover:scale-105 motion-safe:animate-[scale-in_0.25s_ease-out]"
     style={{ contain: 'layout paint' }}
+    aria-label="IslamCal"
   >
-    <svg viewBox="0 0 24 24" width={20} height={20} className="text-white" fill="currentColor" aria-hidden="true">
-      <path d="M17.3 15.5A7 7 0 1 1 8.5 6.7a5.6 5.6 0 0 0 8.8 8.8Z" />
+    {/* Mihrab arch mark */}
+    <svg viewBox="0 0 24 28" width={18} height={22} className="text-white" fill="currentColor" aria-hidden="true">
+      <path d="M12 1.2c-3.2 2.1-5.4 5.3-5.4 9.1 0 2.4 1 4.5 2.7 6.1V26H5.2v1.6h13.6V26H14.7V16.4c1.7-1.6 2.7-3.7 2.7-6.1 0-3.8-2.2-7-5.4-9.1Zm0 3.4c2 1.6 3.4 3.7 3.4 5.7 0 1.9-1 3.5-2.4 4.6h-2c-1.4-1.1-2.4-2.7-2.4-4.6 0-2 1.4-4.1 3.4-5.7Z" />
     </svg>
   </span>
 );
