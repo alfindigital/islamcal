@@ -161,20 +161,28 @@ export const Faraid: React.FC = () => {
       totalFurudh += share;
     }
 
-    // Siblings (blocked by son or father)
+    // Siblings (full siblings — blocked by son OR father in Syafi'i school)
     const siblingsBlocked = hasSon || ayah;
+    const blockerName = hasSon ? 'Anak Laki-laki' : 'Ayah';
+    // Special case (Syafi'i): if only daughters present (no son) and full sisters present,
+    // sisters become ashabah ma'al ghair — they take the remainder, not a furudh share.
+    const sistersBecomeAshabahMaalGhair = !hasSon && anakP > 0 && saudaraP > 0 && !siblingsBlocked;
+
     if (saudaraL > 0) {
       if (siblingsBlocked) {
-        shares.push({ name: 'Saudara Laki-laki', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: hasSon ? 'Anak Laki-laki' : 'Ayah' });
+        shares.push({ name: 'Saudara Laki-laki', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: blockerName });
       } else {
         for (let i = 0; i < saudaraL; i++) ashabahHeirs.push({ name: saudaraL > 1 ? `Saudara Laki-laki ${i+1}` : 'Saudara Laki-laki', parts: 2, count: 1 });
       }
     }
     if (saudaraP > 0) {
       if (siblingsBlocked) {
-        shares.push({ name: 'Saudara Perempuan', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: hasSon ? 'Anak Laki-laki' : 'Ayah' });
+        shares.push({ name: 'Saudara Perempuan', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: blockerName });
       } else if (saudaraL > 0) {
-        // ashabah with brother (already handled above in a combined way)
+        // ashabah bi ghairih (with brother): 2:1
+        for (let i = 0; i < saudaraP; i++) ashabahHeirs.push({ name: saudaraP > 1 ? `Saudara Perempuan ${i+1}` : 'Saudara Perempuan', parts: 1, count: 1 });
+      } else if (sistersBecomeAshabahMaalGhair) {
+        // ashabah ma'al ghair (with daughter) — share remainder equally
         for (let i = 0; i < saudaraP; i++) ashabahHeirs.push({ name: saudaraP > 1 ? `Saudara Perempuan ${i+1}` : 'Saudara Perempuan', parts: 1, count: 1 });
       } else {
         const share = saudaraP === 1 ? 1/2 : 2/3;
@@ -352,8 +360,32 @@ export const Faraid: React.FC = () => {
                 </svg>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs sm:text-sm">
+              {/* Mobile: stacked cards */}
+              <div className="sm:hidden space-y-2">
+                {result.shares.map((s, i) => (
+                  <div key={i} className={`rounded-lg border p-3 ${s.blocked ? 'bg-muted/40 border-dashed' : 'bg-card'}`}>
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-2 min-w-0">
+                        {!s.blocked && <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: colors[i % colors.length] }} />}
+                        <span className={`font-semibold text-sm truncate ${s.blocked ? 'text-muted-foreground line-through' : ''}`}>{s.name}</span>
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground shrink-0">{s.fraction}</span>
+                    </div>
+                    {s.blocked ? (
+                      <p className="text-[11px] text-destructive">Terhalang oleh {s.blockedBy}</p>
+                    ) : (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <span className="text-xs text-muted-foreground">{s.percentage.toFixed(1)}%</span>
+                        <span className="font-bold text-primary text-base">{formatIDR(s.amount)}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop / tablet: table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b"><th className="text-left py-1.5">Ahli Waris</th><th className="text-center">Bagian</th><th className="text-right">%</th><th className="text-right">Jumlah</th></tr>
                   </thead>

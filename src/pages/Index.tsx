@@ -187,9 +187,9 @@ const Index: React.FC = () => {
         </div>
       </main>
 
-      {/* Sticky Footer */}
+      {/* Sticky Footer — icon + tiny label for better mobile usability */}
       <footer className="fixed bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
-        <div className="flex items-stretch justify-center h-16 px-2 sm:px-4 max-w-2xl mx-auto gap-1 sm:gap-2">
+        <div className="flex items-stretch justify-center h-16 px-1 sm:px-4 max-w-2xl mx-auto gap-0.5 sm:gap-2">
           {topItems.map(item => {
             const isActive = activeCalc === item.id;
             return (
@@ -198,18 +198,21 @@ const Index: React.FC = () => {
                 onClick={() => switchCalc(item.id)}
                 aria-label={item.label}
                 title={item.label}
-                className={`group relative flex items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold transition-colors duration-300 ease-out ${
+                className={`group relative flex flex-col items-center justify-center flex-1 max-w-[6rem] gap-0.5 rounded-lg font-semibold transition-colors duration-300 ease-out ${
                   isActive
-                    ? 'bg-primary text-primary-foreground'
+                    ? 'text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 }`}
               >
                 <item.icon
-                  className={`h-6 w-6 shrink-0 transition-transform duration-300 ease-out ${
+                  className={`h-[22px] w-[22px] shrink-0 transition-transform duration-300 ease-out ${
                     isActive ? 'scale-110' : 'group-hover:scale-105'
                   }`}
                   strokeWidth={2.25}
                 />
+                <span className={`text-[10px] leading-none font-semibold tracking-tight ${isActive ? '' : 'opacity-80'}`}>
+                  {item.label}
+                </span>
                 <span
                   className={`pointer-events-none absolute -top-px left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 ease-out ${
                     isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
@@ -221,8 +224,9 @@ const Index: React.FC = () => {
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
-              <button className="flex items-center justify-center flex-1 max-w-[6rem] rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya" title="Lainnya">
-                <Menu className="h-6 w-6" strokeWidth={2.25} />
+              <button className="flex flex-col items-center justify-center flex-1 max-w-[6rem] gap-0.5 rounded-lg font-semibold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors" aria-label="Menu selengkapnya" title="Lainnya">
+                <Menu className="h-[22px] w-[22px]" strokeWidth={2.25} />
+                <span className="text-[10px] leading-none font-semibold tracking-tight opacity-80">Lainnya</span>
               </button>
             </SheetTrigger>
             <SheetContent side="bottom" className="rounded-t-2xl pb-8 max-h-[70vh] overflow-y-auto">
