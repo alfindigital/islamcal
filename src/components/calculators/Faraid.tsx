@@ -161,9 +161,9 @@ export const Faraid: React.FC = () => {
       totalFurudh += share;
     }
 
-    // Siblings (full siblings — blocked by son, father, OR grandfather)
-    const siblingsBlocked = hasSon || ayah || kakek;
-    const blockerName = hasSon ? 'Anak Laki-laki' : ayah ? 'Ayah' : 'Kakek';
+    // Siblings (full siblings — blocked by son OR father in Syafi'i school)
+    const siblingsBlocked = hasSon || ayah;
+    const blockerName = hasSon ? 'Anak Laki-laki' : 'Ayah';
     // Special case (Syafi'i): if only daughters present (no son) and full sisters present,
     // sisters become ashabah ma'al ghair — they take the remainder, not a furudh share.
     const sistersBecomeAshabahMaalGhair = !hasSon && anakP > 0 && saudaraP > 0 && !siblingsBlocked;
