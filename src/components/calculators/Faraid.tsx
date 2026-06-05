@@ -161,20 +161,28 @@ export const Faraid: React.FC = () => {
       totalFurudh += share;
     }
 
-    // Siblings (blocked by son or father)
-    const siblingsBlocked = hasSon || ayah;
+    // Siblings (full siblings — blocked by son, father, OR grandfather)
+    const siblingsBlocked = hasSon || ayah || kakek;
+    const blockerName = hasSon ? 'Anak Laki-laki' : ayah ? 'Ayah' : 'Kakek';
+    // Special case (Syafi'i): if only daughters present (no son) and full sisters present,
+    // sisters become ashabah ma'al ghair — they take the remainder, not a furudh share.
+    const sistersBecomeAshabahMaalGhair = !hasSon && anakP > 0 && saudaraP > 0 && !siblingsBlocked;
+
     if (saudaraL > 0) {
       if (siblingsBlocked) {
-        shares.push({ name: 'Saudara Laki-laki', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: hasSon ? 'Anak Laki-laki' : 'Ayah' });
+        shares.push({ name: 'Saudara Laki-laki', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: blockerName });
       } else {
         for (let i = 0; i < saudaraL; i++) ashabahHeirs.push({ name: saudaraL > 1 ? `Saudara Laki-laki ${i+1}` : 'Saudara Laki-laki', parts: 2, count: 1 });
       }
     }
     if (saudaraP > 0) {
       if (siblingsBlocked) {
-        shares.push({ name: 'Saudara Perempuan', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: hasSon ? 'Anak Laki-laki' : 'Ayah' });
+        shares.push({ name: 'Saudara Perempuan', fraction: '-', percentage: 0, amount: 0, blocked: true, blockedBy: blockerName });
       } else if (saudaraL > 0) {
-        // ashabah with brother (already handled above in a combined way)
+        // ashabah bi ghairih (with brother): 2:1
+        for (let i = 0; i < saudaraP; i++) ashabahHeirs.push({ name: saudaraP > 1 ? `Saudara Perempuan ${i+1}` : 'Saudara Perempuan', parts: 1, count: 1 });
+      } else if (sistersBecomeAshabahMaalGhair) {
+        // ashabah ma'al ghair (with daughter) — share remainder equally
         for (let i = 0; i < saudaraP; i++) ashabahHeirs.push({ name: saudaraP > 1 ? `Saudara Perempuan ${i+1}` : 'Saudara Perempuan', parts: 1, count: 1 });
       } else {
         const share = saudaraP === 1 ? 1/2 : 2/3;
