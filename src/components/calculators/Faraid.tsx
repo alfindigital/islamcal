@@ -360,8 +360,32 @@ export const Faraid: React.FC = () => {
                 </svg>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs sm:text-sm">
+              {/* Mobile: stacked cards */}
+              <div className="sm:hidden space-y-2">
+                {result.shares.map((s, i) => (
+                  <div key={i} className={`rounded-lg border p-3 ${s.blocked ? 'bg-muted/40 border-dashed' : 'bg-card'}`}>
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-2 min-w-0">
+                        {!s.blocked && <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: colors[i % colors.length] }} />}
+                        <span className={`font-semibold text-sm truncate ${s.blocked ? 'text-muted-foreground line-through' : ''}`}>{s.name}</span>
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground shrink-0">{s.fraction}</span>
+                    </div>
+                    {s.blocked ? (
+                      <p className="text-[11px] text-destructive">Terhalang oleh {s.blockedBy}</p>
+                    ) : (
+                      <div className="flex items-baseline justify-between gap-2">
+                        <span className="text-xs text-muted-foreground">{s.percentage.toFixed(1)}%</span>
+                        <span className="font-bold text-primary text-base">{formatIDR(s.amount)}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop / tablet: table */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b"><th className="text-left py-1.5">Ahli Waris</th><th className="text-center">Bagian</th><th className="text-right">%</th><th className="text-right">Jumlah</th></tr>
                   </thead>
