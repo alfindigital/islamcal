@@ -28,7 +28,6 @@ export const Faraid: React.FC = () => {
   const [totalHarta, setTotalHarta] = useState(0);
   const [totalUtang, setTotalUtang] = useState(0);
   const [wasiat, setWasiat] = useState(0);
-  const [wasiatWarning, setWasiatWarning] = useState('');
 
   const [gender, setGender] = useState<'L' | 'P'>('L'); // almarhum
   const [suami, setSuami] = useState(false);
@@ -43,16 +42,17 @@ export const Faraid: React.FC = () => {
   const [kakek, setKakek] = useState(false);
   const [nenek, setNenek] = useState(false);
 
-  const hartaBersih = useMemo(() => {
+  const { hartaBersih, wasiatWarning } = useMemo(() => {
     const afterUtang = totalHarta - totalUtang;
-    if (afterUtang <= 0) return 0;
+    if (afterUtang <= 0) return { hartaBersih: 0, wasiatWarning: '' };
     const maxWasiat = Math.floor(afterUtang / 3);
     if (wasiat > maxWasiat) {
-      setWasiatWarning(`Wasiat dibatasi maksimal 1/3 harta (${formatIDR(maxWasiat)})`);
-      return afterUtang - maxWasiat;
+      return {
+        hartaBersih: afterUtang - maxWasiat,
+        wasiatWarning: `Wasiat dibatasi maksimal 1/3 harta (${formatIDR(maxWasiat)})`,
+      };
     }
-    setWasiatWarning('');
-    return afterUtang - wasiat;
+    return { hartaBersih: afterUtang - wasiat, wasiatWarning: '' };
   }, [totalHarta, totalUtang, wasiat]);
 
   const hasChildren = anakL > 0 || anakP > 0;
