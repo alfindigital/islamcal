@@ -141,8 +141,10 @@ const Index: React.FC = () => {
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:url" content={meta.canonical} />
+        <meta property="og:image" content={`${SITE}/og-image.jpg`} />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={`${SITE}/og-image.jpg`} />
       </Helmet>
 
       {/* Sticky Header — clean solid emerald, no pattern noise */}
